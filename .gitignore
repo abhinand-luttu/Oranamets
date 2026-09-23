@@ -1,0 +1,20 @@
+# Python & Django
+backend/venv/
+backend/.venv/
+**/__pycache__/
+*.py[cod]
+*$py.class
+backend/staticfiles/
+backend/.env
+
+# Node & Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# Binaries & OS
+cloudflared.exe
+*.log
+.DS_Store
+Thumbs.db

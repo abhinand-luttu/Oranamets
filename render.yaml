@@ -1,0 +1,46 @@
+databases:
+  - name: zivara-db
+    databaseName: zivara_db
+    user: zivara_user
+    plan: free
+
+services:
+  # 1. Django REST Backend Web Service
+  - type: web
+    name: zivara-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn rajwadi_backend.wsgi:application"
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "*"
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DATABASE_URL
+        fromDatabase:
+          name: zivara-db
+          property: connectionString
+
+  # 2. React + Vite Frontend Static Site
+  - type: web
+    name: zivara-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "./dist"
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: zivara-backend
+          property: host
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
