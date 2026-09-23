@@ -44,7 +44,7 @@ class RajwadiBackendTests(TestCase):
     def test_category_list(self):
         response = self.client.get('/api/categories/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        results = response.data.get('results', response.data)
+        results = response.data if isinstance(response.data, list) else response.data.get('results', response.data)
         self.assertGreaterEqual(len(results), 1)
         self.assertEqual(results[0]['name'], "Necklace")
 

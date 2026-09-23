@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Phone, ArrowUpRight, Sparkles } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
+import { getAbsoluteImageUrl } from '../api';
 
 export default function OrnamentCard({ ornament }) {
   const { getWhatsAppUrl } = useSettings();
@@ -16,7 +17,12 @@ export default function OrnamentCard({ ornament }) {
     return `₹${Number(ornament.price).toLocaleString('en-IN')}`;
   };
 
-  const primaryImage = ornament.primary_image_url || '/placeholder-jewel.jpg';
+  const initialImage = getAbsoluteImageUrl(ornament.primary_image_url) || '/placeholder-jewel.svg';
+  const [imageSrc, setImageSrc] = useState(initialImage);
+
+  useEffect(() => {
+    setImageSrc(getAbsoluteImageUrl(ornament.primary_image_url) || '/placeholder-jewel.svg');
+  }, [ornament.primary_image_url]);
 
   return (
     <div className="group bg-white rounded-2xl border border-gold/30 hover:border-gold shadow-sm hover:shadow-royal transition-all duration-300 flex flex-col overflow-hidden">
@@ -26,9 +32,10 @@ export default function OrnamentCard({ ornament }) {
         className="relative aspect-square w-full overflow-hidden bg-cream-100 block"
       >
         <img
-          src={primaryImage}
+          src={imageSrc}
           alt={ornament.name}
           loading="lazy"
+          onError={() => setImageSrc('/placeholder-jewel.svg')}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 

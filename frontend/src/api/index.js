@@ -1,4 +1,58 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (typeof window !== 'undefined' ? '' : 'http://127.0.0.1:8001');
+const DEFAULT_BACKEND_URL = 'https://zivara-backend-4cl3.onrender.com';
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || DEFAULT_BACKEND_URL).replace(/\/+$/, '');
+
+/**
+ * Resolves any relative or absolute image path to a valid production backend URL.
+ * Ensures images uploaded via Django Admin are always fetched from the Django backend.
+ */
+export function getAbsoluteImageUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
+    // Force HTTPS for Render domain to avoid mixed-content blocks
+    if (url.startsWith('http://zivara-backend-4cl3.onrender.com')) {
+      return url.replace('http://', 'https://');
+    }
+    return url;
+  }
+  const cleanPath = url.startsWith('/') ? url : `/${url}`;
+  return `${API_BASE_URL}${cleanPath}`;
+}
+
+export function normalizeCategory(cat) {
+  if (!cat) return cat;
+  const rawImage = cat.image_url || cat.image;
+  return {
+    ...cat,
+    image_url: rawImage ? getAbsoluteImageUrl(rawImage) : null,
+  };
+}
+
+export function normalizeOrnament(item) {
+  if (!item) return item;
+
+  const rawImages = item.images || [];
+  const normalizedImages = rawImages.map(img => {
+    const rawUrl = typeof img === 'string' ? img : (img.image_url || img.image || '');
+    return {
+      ...(typeof img === 'object' ? img : {}),
+      image_url: rawUrl ? getAbsoluteImageUrl(rawUrl) : '',
+      alt_text: (typeof img === 'object' && img.alt_text) ? img.alt_text : `${item.name} Image`
+    };
+  });
+
+  const rawPrimary = item.primary_image_url || (normalizedImages[0]?.image_url) || null;
+  const rawAllUrls = item.all_image_urls || [];
+
+  return {
+    ...item,
+    primary_image_url: rawPrimary ? getAbsoluteImageUrl(rawPrimary) : (normalizedImages[0]?.image_url || null),
+    all_image_urls: rawAllUrls.length > 0
+      ? rawAllUrls.map(u => getAbsoluteImageUrl(u))
+      : normalizedImages.map(img => img.image_url).filter(Boolean),
+    images: normalizedImages,
+    category: typeof item.category === 'object' ? normalizeCategory(item.category) : item.category,
+  };
+}
 
 const FALLBACK_CATEGORIES = [
   { id: 1, name: "Necklace", slug: "necklace", description: "Royal Haar, Chokers & Kundan Neckpieces", ornaments_count: 2 },
@@ -250,13 +304,18 @@ const FALLBACK_ORNAMENTS = [
 
 export async function fetchCategories() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/categories/`);
-    if (!res.ok) throw new Error('Failed to fetch categories');
+    const res = await fetch(`${API_BASE_URL}/api/categories/`, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    if (!res.ok) throw new Error(`Categories API returned status ${res.status}`);
     const data = await res.json();
-    return data.results || data;
+    const list = data.results || (Array.isArray(data) ? data : []);
+    return list.map(normalizeCategory);
   } catch (err) {
-    console.warn('Using fallback categories:', err);
-    return FALLBACK_CATEGORIES;
+    console.warn('Backend categories unavailable, falling back:', err);
+    return FALLBACK_CATEGORIES.map(normalizeCategory);
   }
 }
 
@@ -269,13 +328,20 @@ export async function fetchOrnaments(params = {}) {
     if (params.featured) query.append('featured', 'true');
     if (params.ordering) query.append('ordering', params.ordering);
 
-    const res = await fetch(`${API_BASE_URL}/api/ornaments/?${query.toString()}`);
-    if (!res.ok) throw new Error('Failed to fetch ornaments');
+    const qs = query.toString();
+    const endpoint = `${API_BASE_URL}/api/ornaments/${qs ? `?${qs}` : ''}`;
+    const res = await fetch(endpoint, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    if (!res.ok) throw new Error(`Ornaments API returned status ${res.status}`);
     const data = await res.json();
-    return data.results || data;
+    const list = data.results || (Array.isArray(data) ? data : []);
+    return list.map(normalizeOrnament);
   } catch (err) {
-    console.warn('API unavailable, using fallback ornaments data:', err);
-    let filtered = [...FALLBACK_ORNAMENTS];
+    console.warn('Backend ornaments unavailable, falling back:', err);
+    let filtered = FALLBACK_ORNAMENTS.map(normalizeOrnament);
     if (params.category) {
       filtered = filtered.filter(item => item.category_slug === params.category || item.category?.slug === params.category);
     }
@@ -299,21 +365,30 @@ export async function fetchOrnaments(params = {}) {
 
 export async function fetchOrnamentDetail(slug) {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/ornaments/${slug}/`);
-    if (!res.ok) throw new Error('Failed to fetch ornament details');
-    return await res.json();
+    const res = await fetch(`${API_BASE_URL}/api/ornaments/${slug}/`, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    if (!res.ok) throw new Error(`Ornament detail API returned status ${res.status}`);
+    const data = await res.json();
+    return normalizeOrnament(data);
   } catch (err) {
-    console.warn('API unavailable, finding in fallback ornaments:', err);
-    const item = FALLBACK_ORNAMENTS.find(o => o.slug === slug);
-    if (item) return item;
+    console.warn('Backend detail unavailable, finding in fallback data:', err);
+    const item = FALLBACK_ORNAMENTS.find(o => o.slug === slug || String(o.id) === String(slug));
+    if (item) return normalizeOrnament(item);
     throw err;
   }
 }
 
 export async function fetchBusinessSettings() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/business-settings/`);
-    if (!res.ok) throw new Error('Failed to fetch settings');
+    const res = await fetch(`${API_BASE_URL}/api/business-settings/`, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
+    if (!res.ok) throw new Error(`Business settings API returned status ${res.status}`);
     return await res.json();
   } catch (err) {
     console.warn('Using default business settings:', err);

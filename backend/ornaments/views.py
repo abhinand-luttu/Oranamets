@@ -19,6 +19,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.filter(is_active=True).order_by('display_order', 'name')
     serializer_class = CategorySerializer
     permission_classes = [IsAdminOrReadOnly]
+    pagination_class = None
     lookup_field = 'slug'
 
     def get_queryset(self):
@@ -26,6 +27,16 @@ class CategoryViewSet(viewsets.ModelViewSet):
         if self.request.user and self.request.user.is_staff:
             return Category.objects.all().order_by('display_order', 'name')
         return Category.objects.filter(is_active=True).order_by('display_order', 'name')
+
+    def get_object(self):
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        lookup_val = self.kwargs.get(lookup_url_kwarg)
+        if lookup_val and str(lookup_val).isdigit():
+            obj = Category.objects.filter(pk=int(lookup_val)).first()
+            if obj:
+                self.check_object_permissions(self.request, obj)
+                return obj
+        return super().get_object()
 
 
 class OrnamentViewSet(viewsets.ModelViewSet):
@@ -36,6 +47,16 @@ class OrnamentViewSet(viewsets.ModelViewSet):
         if self.action in ['retrieve', 'create', 'update', 'partial_update']:
             return OrnamentDetailSerializer
         return OrnamentListSerializer
+
+    def get_object(self):
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        lookup_val = self.kwargs.get(lookup_url_kwarg)
+        if lookup_val and str(lookup_val).isdigit():
+            obj = Ornament.objects.filter(pk=int(lookup_val)).first()
+            if obj:
+                self.check_object_permissions(self.request, obj)
+                return obj
+        return super().get_object()
 
     def get_queryset(self):
         queryset = Ornament.objects.select_related('category').prefetch_related('images').all()

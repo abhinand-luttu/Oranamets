@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
+import { getAbsoluteImageUrl } from '../api';
 
 export default function CategoryCard({ category }) {
+  const categoryImage = category.image_url ? getAbsoluteImageUrl(category.image_url) : null;
+
   return (
     <Link
       to={`/collection?category=${category.slug}`}
@@ -12,8 +15,17 @@ export default function CategoryCard({ category }) {
       <div className="absolute top-0 right-0 w-16 h-16 bg-cream-100 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-125" />
 
       <div className="relative z-10">
-        <div className="w-12 h-12 rounded-xl bg-maroon/10 border border-gold/40 flex items-center justify-center text-maroon mb-4 group-hover:bg-maroon group-hover:text-gold transition-colors duration-300">
-          <Sparkles className="w-6 h-6" />
+        <div className="w-12 h-12 rounded-xl bg-maroon/10 border border-gold/40 flex items-center justify-center text-maroon mb-4 group-hover:bg-maroon group-hover:text-gold transition-colors duration-300 overflow-hidden">
+          {categoryImage ? (
+            <img
+              src={categoryImage}
+              alt={category.name}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              className="w-full h-full object-cover rounded-xl"
+            />
+          ) : (
+            <Sparkles className="w-6 h-6" />
+          )}
         </div>
 
         <h3 className="font-royal text-xl font-bold text-brown group-hover:text-maroon transition-colors mb-1.5">

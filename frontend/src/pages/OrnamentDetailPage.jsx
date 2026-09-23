@@ -15,7 +15,7 @@ import {
   MapPin,
   Truck
 } from 'lucide-react';
-import { fetchOrnamentDetail, fetchOrnaments } from '../api';
+import { fetchOrnamentDetail, fetchOrnaments, getAbsoluteImageUrl } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
 
@@ -104,8 +104,13 @@ export default function OrnamentDetailPage() {
     );
   }
 
-  const images = ornament.images || [];
-  const activeImage = images[selectedImageIndex]?.image_url || '/placeholder-jewel.jpg';
+  const rawImages = ornament.images || [];
+  const displayImages = rawImages.length > 0
+    ? rawImages
+    : (ornament.primary_image_url ? [{ id: 0, image_url: ornament.primary_image_url, alt_text: ornament.name }] : []);
+
+  const activeRawImage = displayImages[selectedImageIndex]?.image_url || ornament.primary_image_url || '/placeholder-jewel.svg';
+  const activeImage = getAbsoluteImageUrl(activeRawImage) || '/placeholder-jewel.svg';
   const isAvailable = ornament.availability === 'in_stock';
   const isMadeToOrder = ornament.availability === 'made_to_order';
 
@@ -147,6 +152,7 @@ export default function OrnamentDetailPage() {
             <img
               src={activeImage}
               alt={ornament.name}
+              onError={(e) => { e.currentTarget.src = '/placeholder-jewel.svg'; }}
               className="w-full h-full object-cover object-center transition-all duration-300"
             />
 
@@ -181,9 +187,9 @@ export default function OrnamentDetailPage() {
           </div>
 
           {/* Image Thumbnails Strip */}
-          {images.length > 1 && (
+          {displayImages.length > 1 && (
             <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
-              {images.map((img, idx) => (
+              {displayImages.map((img, idx) => (
                 <button
                   key={img.id || idx}
                   onClick={() => setSelectedImageIndex(idx)}
@@ -194,8 +200,9 @@ export default function OrnamentDetailPage() {
                   }`}
                 >
                   <img
-                    src={img.image_url}
+                    src={getAbsoluteImageUrl(img.image_url) || '/placeholder-jewel.svg'}
                     alt={img.alt_text || `${ornament.name} angle ${idx + 1}`}
+                    onError={(e) => { e.currentTarget.src = '/placeholder-jewel.svg'; }}
                     className="w-full h-full object-cover"
                   />
                 </button>

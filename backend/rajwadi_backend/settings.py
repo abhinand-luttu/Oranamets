@@ -122,10 +122,33 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 24,
 }
 
-# CORS Configuration
+# CORS & Security Configuration
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'https://oranamets.onrender.com',
+    'https://zivara-frontend.onrender.com',
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+]
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^http://localhost:\d+$",
     r"^http://127\.0\.0\.1:\d+$",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://oranamets.onrender.com',
+    'https://zivara-frontend.onrender.com',
+    'https://zivara-backend-4cl3.onrender.com',
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+]
+
+# Ensure HTTPS reverse proxy behind Render/Cloudflare correctly builds HTTPS URLs
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
