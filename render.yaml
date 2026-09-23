@@ -28,18 +28,11 @@ services:
           property: connectionString
 
   # 2. React + Vite Frontend Static Site
-  - type: web
+  - type: static
     name: zivara-frontend
-    runtime: static
-    rootDir: frontend
-    buildCommand: "npm install && npm run build"
+    plan: free
+    buildCommand: "node build-root.js"
     staticPublishPath: "./dist"
-    envVars:
-      - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: zivara-backend
-          property: host
     routes:
       - type: rewrite
         source: /*

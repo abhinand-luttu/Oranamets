@@ -1,0 +1,11 @@
+{
+  "name": "zivara",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "node build-root.js",
+    "build": "node build-root.js",
+    "start": "node server.js"
+  }
+}
