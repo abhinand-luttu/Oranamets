@@ -1,7 +1,7 @@
 @echo off
 echo ======================================================================
 echo           ZIVARA - GUJARAT TRADITIONAL ORNAMENTS
-echo           Supplied from Kerala, India
+echo           Shipped Directly from Gujarat to Your Doorstep
 echo ======================================================================
 echo.
 echo Starting Backend (Django REST Framework on http://127.0.0.1:8001)...

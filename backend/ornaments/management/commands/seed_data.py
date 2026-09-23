@@ -35,20 +35,21 @@ class Command(BaseCommand):
         # 2. Business Settings
         business_settings = BusinessSettings.get_settings()
         business_settings.store_name = "Zivara"
-        business_settings.tagline = "Gujarat Traditional Ornaments, Supplied from Kerala"
+        business_settings.tagline = "Gujarat Traditional Ornaments • Shipped Directly from Gujarat"
         business_settings.whatsapp_number = "+918848242986"
         business_settings.phone_number = "+918848242986"
         business_settings.email = "contact@zivaraornaments.com"
-        business_settings.address = "Kerala, India"
-        business_settings.city = "Kerala, India"
+        business_settings.address = "Gujarat, India (Direct Shipment Hub)"
+        business_settings.city = "Gujarat, India"
         business_settings.business_hours = "Monday - Saturday: 9:30 AM - 7:30 PM | Available on WhatsApp & Call"
         business_settings.about_summary = (
-            "Zivara showcases traditional Gujarat-inspired and Gujarati royal ornaments, carefully sourced and supplied from Kerala, India. "
-            "From intricate Jadau and Kundan pieces to timeless Kathiyawadi jhumkas and traditional bridal jewellery, "
-            "we supply authentic Gujarat styles to customers across Kerala and nationwide with direct personal assistance."
+            "Zivara brings authentic Gujarat traditional ornaments directly to your doorstep. "
+            "When you select an ornament, your order is processed by Zivara and shipped directly from Gujarat to your provided address. "
+            "From intricate Jadau and Kundan pieces to timeless Kathiyawadi necklaces, bridal sets, and bangles, "
+            "we deliver authentic Gujarat heritage jewellery with guaranteed doorstep delivery."
         )
         business_settings.save()
-        self.stdout.write(self.style.SUCCESS("[OK] Business Settings initialized for Zivara (Kerala, India)"))
+        self.stdout.write(self.style.SUCCESS("[OK] Business Settings initialized for Zivara (Shipped from Gujarat)"))
 
         # 3. Categories
         categories_data = [
@@ -118,7 +119,7 @@ class Command(BaseCommand):
             # Text labels
             brand_text = "ZIVARA"
             draw.text((center_x, 100), brand_text, fill=accent_color, anchor="mm")
-            draw.text((center_x, 125), "* GUJARAT STYLES - FROM KERALA *", fill=(247, 242, 233), anchor="mm")
+            draw.text((center_x, 125), "* GUJARAT TRADITIONAL ORNAMENTS *", fill=(247, 242, 233), anchor="mm")
 
             draw.text((center_x, height - 190), title.upper(), fill=(253, 251, 247), anchor="mm")
             draw.text((center_x, height - 150), subtitle, fill=accent_color, anchor="mm")

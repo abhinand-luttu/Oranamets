@@ -33,7 +33,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-20 pb-20">
-      {/* 1. HERO SECTION - Zivara: Gujarat Ornaments, Supplied from Kerala */}
+      {/* 1. HERO SECTION - Zivara: Gujarat Ornaments, Shipped Directly from Gujarat */}
       <section className="relative overflow-hidden bg-maroon-gradient text-cream-50 pt-16 pb-24 lg:pt-24 lg:pb-32 border-b-4 border-gold">
         {/* Subtle decorative background pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
@@ -45,30 +45,29 @@ export default function HomePage() {
               {/* Badge: Origin vs Location */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream-50/10 border border-gold/40 text-gold-light text-xs font-semibold tracking-widest uppercase">
                 <Sparkles className="w-3.5 h-3.5 text-gold" />
-                <span>Gujarat Traditional Ornaments • Supplied from Kerala</span>
+                <span>Gujarat Traditional Ornaments • Direct Doorstep Delivery</span>
               </div>
 
               {/* Main Headline */}
               <h1 className="font-royal text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cream-50 leading-[1.15]">
-                Traditional Gujarat Ornaments, <span className="text-gold-gradient">Available from Kerala</span>
+                Traditional Gujarat Ornaments, <span className="text-gold-gradient">Delivered to Your Doorstep</span>
               </h1>
 
               {/* Subheading */}
               <p className="text-sm sm:text-base text-cream-200/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Authentic Gujarat-inspired ornaments, carefully sourced and supplied from Kerala.
-                We bring Gujarat's celebrated Jadau, Kundan, Kathiyawadi, and bridal ornament traditions directly
-                to your doorstep across Kerala and throughout India.
+                Authentic Gujarat traditional ornaments. Customers place orders on the website,
+                orders are processed by Zivara, and products are shipped directly from Gujarat to your provided address.
               </p>
 
               {/* Key Highlights */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 text-xs text-cream-200/80">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-gold" />
-                  <span>Business Location: Kerala, India</span>
+                  <Truck className="w-4 h-4 text-gold" />
+                  <span>Shipped Directly from Gujarat</span>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Truck className="w-4 h-4 text-gold" />
-                  <span>Direct Delivery to Kerala & Nationwide</span>
+                  <CheckCircle2 className="w-4 h-4 text-gold" />
+                  <span>Delivered to Your Provided Address</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <MessageCircle className="w-4 h-4 text-emerald-300" />
@@ -118,7 +117,7 @@ export default function HomePage() {
                       ZIVARA ORNAMENTS
                     </span>
                     <p className="text-xs text-cream-200/80 mb-6 max-w-xs leading-relaxed">
-                      Traditional Gujarat designs carefully sourced and supplied from our business in Kerala, India.
+                      Authentic Gujarat traditional ornaments, ordered online and shipped directly from Gujarat to your address.
                     </p>
                     <Link
                       to="/collection"
@@ -132,11 +131,11 @@ export default function HomePage() {
                 {/* Floating Badge */}
                 <div className="absolute -bottom-5 -left-5 bg-white text-brown p-3.5 rounded-2xl border border-gold shadow-royal flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-maroon/10 border border-gold/40 flex items-center justify-center text-maroon">
-                    <MapPin className="w-5 h-5 text-gold-dark" />
+                    <Truck className="w-5 h-5 text-gold-dark" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-brown font-royal">Based in Kerala</p>
-                    <p className="text-[10px] text-brown/60">Gujarat Styles • India-Wide Delivery</p>
+                    <p className="text-xs font-bold text-brown font-royal">Shipped from Gujarat</p>
+                    <p className="text-[10px] text-brown/60">Delivered Directly to Your Address</p>
                   </div>
                 </div>
               </div>
@@ -145,18 +144,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. HOW PURCHASE & DELIVERY WORKS */}
+      {/* 2. HOW ORDER & DELIVERY WORKS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
           <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
-            Simple & Transparent
+            Direct & Transparent Process
           </span>
           <h2 className="font-royal text-3xl sm:text-4xl font-bold text-brown">
-            How to Purchase from Zivara
+            How It Works: Order to Delivery
           </h2>
           <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
           <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-            No complicated online accounts or registration needed. We keep your shopping journey direct and personal.
+            Select your ornament on the website, we process your order, and ship it directly from Gujarat to your doorstep.
           </p>
         </div>
 
@@ -165,9 +164,9 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
               1
             </div>
-            <h3 className="font-royal text-base font-bold text-brown">Browse Ornaments</h3>
+            <h3 className="font-royal text-base font-bold text-brown">Select an Ornament</h3>
             <p className="text-xs text-brown/70 leading-relaxed">
-              Explore Gujarat-inspired necklaces, jhumkas, bridal Damini, bangles, and rings in our catalogue.
+              Explore authentic Gujarat traditional necklaces, jhumkas, bridal Damini, bangles, and rings in our catalogue.
             </p>
           </div>
 
@@ -175,9 +174,9 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
               2
             </div>
-            <h3 className="font-royal text-base font-bold text-brown">Select & View Photos</h3>
+            <h3 className="font-royal text-base font-bold text-brown">Place Your Order</h3>
             <p className="text-xs text-brown/70 leading-relaxed">
-              Open any ornament to see high-resolution multi-angle photos, specifications, and design details.
+              Click “Enquire / Purchase” to open WhatsApp with the ornament name pre-filled, or send an enquiry form.
             </p>
           </div>
 
@@ -185,9 +184,9 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
               3
             </div>
-            <h3 className="font-royal text-base font-bold text-brown">Click “Enquire / Purchase”</h3>
+            <h3 className="font-royal text-base font-bold text-brown">Order Processed by Zivara</h3>
             <p className="text-xs text-brown/70 leading-relaxed">
-              A single tap opens WhatsApp with the ornament name automatically pre-filled for instant enquiry.
+              Our team confirms product specifications, price, availability, and securely prepares your dispatch.
             </p>
           </div>
 
@@ -195,9 +194,9 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
               4
             </div>
-            <h3 className="font-royal text-base font-bold text-brown">Confirm & Receive Delivery</h3>
+            <h3 className="font-royal text-base font-bold text-brown">Shipped from Gujarat</h3>
             <p className="text-xs text-brown/70 leading-relaxed">
-              Our Kerala team confirms price, availability, and ships securely to your doorstep anywhere in India.
+              The product is shipped directly from Gujarat with tracking and delivered straight to your provided address.
             </p>
           </div>
         </div>
@@ -214,7 +213,7 @@ export default function HomePage() {
           </h2>
           <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
           <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-            Browse Gujarat-style ornaments organized by classification, supplied directly by our business in Kerala.
+            Browse authentic Gujarat traditional ornaments organized by classification, dispatched directly from Gujarat.
           </p>
         </div>
 
@@ -278,13 +277,13 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4">
               <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold flex items-center justify-center text-maroon">
-                <MapPin className="w-6 h-6 text-gold-dark" />
+                <CheckCircle2 className="w-6 h-6 text-gold-dark" />
               </div>
               <h3 className="font-royal text-xl font-bold text-brown">
-                Based in Kerala, India
+                Direct Orders via Website
               </h3>
               <p className="text-xs text-brown/70 leading-relaxed">
-                Zivara operates from Kerala, India. We manage procurement, customer assistance, quality verification, and dispatch directly to you.
+                Browse our online catalogue and place your order or inquiry via WhatsApp. Zivara processes your request and provides clear order tracking.
               </p>
             </div>
 
@@ -293,10 +292,10 @@ export default function HomePage() {
                 <Sparkles className="w-6 h-6 text-gold-dark" />
               </div>
               <h3 className="font-royal text-xl font-bold text-brown">
-                Sourced from Gujarat
+                Shipped Directly from Gujarat
               </h3>
               <p className="text-xs text-brown/70 leading-relaxed">
-                Every ornament celebrates traditional Gujarati artistry — from Vadodara-style Jadau and Kutch Pachchikam to Kathiyawadi bridal jhumkas.
+                Every ornament represents authentic Gujarati craftsmanship — from Vadodara-style Jadau and Kutch Pachchikam to Kathiyawadi bridal jewellery, dispatched directly from Gujarat.
               </p>
             </div>
 
@@ -305,10 +304,10 @@ export default function HomePage() {
                 <Truck className="w-6 h-6 text-gold-dark" />
               </div>
               <h3 className="font-royal text-xl font-bold text-brown">
-                Supplied Across India
+                Delivered to Your Address
               </h3>
               <p className="text-xs text-brown/70 leading-relaxed">
-                Customers from Kerala and all other states can contact us on WhatsApp to confirm delivery timeframes and purchase terms securely.
+                Orders are safely packaged with insured courier partners and delivered directly to the address you provide, anywhere in India.
               </p>
             </div>
           </div>
@@ -328,7 +327,7 @@ export default function HomePage() {
               Looking for a Specific Gujarat Ornament or Bridal Set?
             </h2>
             <p className="text-xs sm:text-sm text-cream-200/90 leading-relaxed">
-              Contact our Kerala-based team directly on WhatsApp or phone at +91 8848242986. We'll share product images, exact pricing, availability, and delivery details.
+              Contact our team directly on WhatsApp or phone at +91 8848242986. We'll share product images, exact pricing, availability, and arrange direct delivery to your address.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">

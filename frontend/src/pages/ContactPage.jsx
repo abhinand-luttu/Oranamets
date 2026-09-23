@@ -64,36 +64,39 @@ export default function ContactPage() {
         </h1>
         <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
         <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-          Traditional Gujarat ornaments, available from Kerala. Contact our Kerala-based business directly through WhatsApp or phone for purchase inquiries, price details, availability, and delivery across India.
+          Authentic Gujarat traditional ornaments. Customers place an order on our website or WhatsApp, our company processes the request, and the ornament is shipped directly from Gujarat to your provided address.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Column: Direct Contact & Location Information */}
         <div className="lg:col-span-5 space-y-6">
-          {/* Business Location Card (Prominently displaying Kerala, India) */}
+          {/* Order & Delivery Workflow Card */}
           <div className="bg-cream-100/90 rounded-3xl p-6 sm:p-8 border-2 border-gold/40 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-maroon/10 border border-gold flex items-center justify-center text-maroon">
-                <MapPin className="w-6 h-6 text-gold-dark" />
+                <Truck className="w-6 h-6 text-gold-dark" />
               </div>
               <div>
                 <h3 className="font-royal text-xl font-bold text-brown">
-                  Business Location
+                  Order & Delivery Flow
                 </h3>
-                <p className="text-xs text-gold-dark font-semibold">Kerala, India</p>
+                <p className="text-xs text-gold-dark font-semibold">Shipped from Gujarat • All India Delivery</p>
               </div>
             </div>
 
             <div className="space-y-2.5 text-xs text-brown/80 pt-2 border-t border-cream-200">
               <p className="leading-relaxed">
-                <strong>Location:</strong> Kerala, India
+                <strong>1. Select Ornament:</strong> Choose your Gujarat traditional ornament from our live catalogue.
               </p>
               <p className="leading-relaxed text-brown/70">
-                <strong>Product Origin:</strong> Gujarat traditional / Gujarat-inspired ornaments, sourced from Gujarat and supplied by our Kerala-based business.
+                <strong>2. Place Order:</strong> Enquire via WhatsApp or submit the enquiry form below.
               </p>
               <p className="leading-relaxed text-brown/70">
-                <strong>Delivery:</strong> We supply and deliver ornaments to customers across Kerala and nationwide.
+                <strong>3. Order Processed:</strong> Zivara verifies availability, confirms pricing and payment details.
+              </p>
+              <p className="leading-relaxed text-brown/70">
+                <strong>4. Direct Delivery:</strong> Your ornament is shipped directly from Gujarat to your provided address.
               </p>
             </div>
           </div>
@@ -166,7 +169,7 @@ export default function ContactPage() {
                 Enquire About an Ornament
               </h2>
               <p className="text-xs text-brown/70 leading-relaxed">
-                Interested in any ornament from our catalogue? Fill in your details below and our Kerala team will reach out with pricing, availability, and delivery options.
+                Interested in any ornament from our catalogue? Fill in your details below and our team will reach out with pricing, availability, and delivery options.
               </p>
             </div>
 
@@ -177,7 +180,7 @@ export default function ContactPage() {
                   Enquiry Received
                 </h3>
                 <p className="text-xs text-emerald-800 leading-relaxed max-w-md mx-auto">
-                  Thank you! We have received your inquiry. Our team based in Kerala will contact you shortly via WhatsApp or phone (+91 8848242986).
+                  Thank you! We have received your inquiry. Our team will contact you shortly via WhatsApp or phone (+91 8848242986).
                 </p>
                 <button
                   onClick={() => setSuccess(false)}
@@ -279,7 +282,7 @@ export default function ContactPage() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Mention the ornament name, quantity, delivery location in Kerala or other states, or specific questions..."
+                    placeholder="Mention the ornament name, quantity, delivery address, or any questions..."
                     className="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/50 text-xs sm:text-sm focus:outline-none focus:border-gold transition-colors resize-none"
                   />
                 </div>

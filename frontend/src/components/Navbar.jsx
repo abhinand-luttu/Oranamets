@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Phone, MessageCircle, Menu, X, Sparkles, Lock, MapPin } from 'lucide-react';
+import { Phone, MessageCircle, Menu, X, Sparkles, Lock, MapPin, Truck } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
 
 export default function Navbar() {
@@ -27,13 +27,13 @@ export default function Navbar() {
           <div className="flex items-center space-x-2">
             <span className="inline-block w-2 h-2 rounded-full bg-gold animate-pulse"></span>
             <span className="tracking-wider uppercase font-medium text-[11px]">
-              Traditional Gujarat Ornaments, Supplied from Kerala
+              Traditional Gujarat Ornaments • Shipped Directly from Gujarat
             </span>
           </div>
           <div className="hidden sm:flex items-center space-x-6 text-[11px] font-medium tracking-wider">
             <span className="flex items-center gap-1 text-gold-light/90">
-              <MapPin className="w-3 h-3 text-gold" />
-              <span>Location: Kerala, India</span>
+              <Truck className="w-3 h-3 text-gold" />
+              <span>Doorstep Delivery to Your Address</span>
             </span>
             <a
               href={getCallUrl()}
@@ -52,7 +52,7 @@ export default function Navbar() {
               <span>WhatsApp Direct</span>
             </a>
             <a
-              href="http://127.0.0.1:8001/admin/"
+              href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gold transition-colors flex items-center gap-1 text-gold/80 hover:text-gold"
@@ -78,7 +78,7 @@ export default function Navbar() {
                 ZIVARA
               </span>
               <span className="text-[9.5px] tracking-[0.25em] uppercase text-gold font-semibold -mt-1">
-                GUJARAT ORNAMENTS • FROM KERALA
+                GUJARAT TRADITIONAL ORNAMENTS
               </span>
             </div>
           </Link>
@@ -165,7 +165,7 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="http://127.0.0.1:8001/admin/"
+              href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-2.5 rounded-lg text-sm font-medium text-gold-dark hover:bg-cream-200/50 flex items-center gap-2"

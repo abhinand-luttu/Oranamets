@@ -59,7 +59,7 @@ export default function OrnamentDetailPage() {
       try {
         await navigator.share({
           title: `${ornament.name} | Zivara`,
-          text: `Check out ${ornament.name} (Gujarat Traditional Ornaments, Supplied from Kerala):`,
+          text: `Check out ${ornament.name} (Gujarat Traditional Ornaments • Shipped from Gujarat):`,
           url: window.location.href,
         });
       } catch (e) {
@@ -246,7 +246,7 @@ export default function OrnamentDetailPage() {
             <div className="text-right">
               <span className="text-[11px] text-brown/60 block">Supply & Dispatch</span>
               <span className="text-xs font-semibold text-emerald-800 flex items-center gap-1 justify-end">
-                <Truck className="w-3.5 h-3.5" /> From Kerala, India
+                <Truck className="w-3.5 h-3.5" /> Shipped from Gujarat
               </span>
             </div>
           </div>
@@ -272,8 +272,8 @@ export default function OrnamentDetailPage() {
               <span className="font-semibold text-brown">{ornament.purity || '22K Finish'}</span>
             </div>
             <div>
-              <span className="text-brown/50 block mb-0.5">Supplied & Shipped From</span>
-              <span className="font-semibold text-brown">Kerala, India</span>
+              <span className="text-brown/50 block mb-0.5">Order Dispatch</span>
+              <span className="font-semibold text-brown">Shipped from Gujarat</span>
             </div>
             <div>
               <span className="text-brown/50 block mb-0.5">Order Status</span>
@@ -316,9 +316,9 @@ export default function OrnamentDetailPage() {
 
           {/* Business & Delivery Note */}
           <div className="bg-white p-4 rounded-xl border border-gold/20 flex items-start gap-3 text-xs text-brown/70">
-            <MapPin className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+            <Truck className="w-5 h-5 text-gold shrink-0 mt-0.5" />
             <span>
-              <strong>Zivara (Kerala, India)</strong> supplies Gujarat-inspired ornaments with insured shipping across Kerala and throughout India. We verify availability and delivery timeframes directly via WhatsApp.
+              <strong>Order & Delivery:</strong> Customers place orders on the website or WhatsApp. Zivara processes your request, and the ornament is shipped directly from Gujarat to your provided address anywhere in India.
             </span>
           </div>
         </div>

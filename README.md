@@ -1,25 +1,25 @@
 # Zivara – Gujarat Traditional Ornaments
 
-> **Positioning**: *“Zivara – Gujarat Traditional Ornaments, Supplied from Kerala.”*  
+> **Positioning**: *“Zivara – Authentic Gujarat Traditional Ornaments • Shipped Directly from Gujarat.”*  
 > **Brand**: Zivara  
-> **Business Location**: Kerala, India  
+> **Origin & Shipment**: Direct dispatch from Gujarat, India to customer address nationwide  
 > **Contact / WhatsApp**: +91 8848242986  
-> **Product Origin & Style**: Traditional Gujarat and Gujarat-inspired ornaments, carefully sourced from Gujarat and supplied from Kerala to customers across Kerala and nationwide.
+> **Delivery Model**: Select ornament → Order confirmed & processed by Zivara → Shipped directly from Gujarat → Delivered to customer's address.
 
 ---
 
 ## 1. Project Overview
 
-**Zivara** is a modern, luxury, and fully responsive ornaments showcase and direct-enquiry website.
+**Zivara** is a luxury, responsive ornaments showcase and direct-order platform for authentic Gujarat traditional jewellery.
 
 ### Core Customer Flow (Zero friction)
-$$\text{Browse Ornaments} \longrightarrow \text{Select Ornament} \longrightarrow \text{View Photos \& Specs} \longrightarrow \text{Click “Enquire / Purchase”} \longrightarrow \text{Chat on WhatsApp with Kerala Team}$$
+$$\text{Browse Ornaments} \longrightarrow \text{Select Ornament} \longrightarrow \text{Order via WhatsApp / Web} \longrightarrow \text{Processed by Zivara} \longrightarrow \text{Shipped from Gujarat} \longrightarrow \text{Delivered to Doorstep}$$
 
 - **No customer account or login required.**
 - Every ornament features an **“Enquire / Purchase”** button that immediately launches WhatsApp with the pre-filled message:  
   *“Hello, I am interested in [ORNAMENT NAME]. I would like to purchase this ornament. Please provide the price, availability and delivery details.”*
 - Direct voice call button to **+91 8848242986**.
-- The business location is clearly communicated as **Kerala, India**, while the ornament styles are authentically rooted in Gujarat heritage.
+- All orders are processed by Zivara and dispatched straight from Gujarat with safe doorstep delivery.
 
 ---
 
@@ -73,17 +73,17 @@ npm run dev
 - **Palette**: Cream/Ivory (`#FDFBF7`), Royal Gold (`#C5A059`, `#D4AF37`), Deep Maroon (`#6B1D2F`), Dark Brown (`#2C1810`), White.
 - **Typography**: Display serif (`Cinzel`, `Cormorant Garamond`) and clean sans (`Montserrat`).
 - **Pages**:
-  - `HomePage`: Hero presentation, category grid, featured collection, "How to Purchase" steps, and Kerala business trust badges.
+  - `HomePage`: Hero presentation, category grid, featured collection, "Order & Delivery" 4-step flow, and trust badges.
   - `CollectionPage`: Responsive product grid, live search, category filter pills, availability filters (In Stock, Made to Order, Sold Out), and sorting.
   - `OrnamentDetailPage`: Large product photo, multi-angle thumbnail gallery, craftsmanship notes, purity, weight, **“Enquire / Purchase”** button with exact WhatsApp template, and related ornaments.
-  - `ContactPage`: Prominent **Business Location: Kerala, India**, **Phone / WhatsApp: +91 8848242986**, operating hours, and customer enquiry form.
+  - `ContactPage`: Gujarat shipment information, **Phone / WhatsApp: +91 8848242986**, operating hours, and customer enquiry form.
 
 ### Backend (Django + Django REST Framework)
 - **Models**:
   - `Category`: Name, slug, description, display order, active toggle.
   - `Ornament`: Name, slug, category, description, price, is_price_on_request, availability, is_featured, purity, weight_approx.
   - `OrnamentImage`: Multi-image inline uploads in Django Admin with preview thumbnails.
-  - `BusinessSettings` (Singleton): Configurable store name (Zivara), WhatsApp number (`+918848242986`), phone number, business location (`Kerala, India`), and business hours.
+  - `BusinessSettings` (Singleton): Configurable store name (Zivara), WhatsApp number (`+918848242986`), phone number, business location (`Gujarat, India`), and business hours.
   - `ContactInquiry`: Stores customer submissions from the contact form for admin review.
 - **Dual Database Strategy**:
   - Default: Instant zero-config SQLite (`db.sqlite3`).

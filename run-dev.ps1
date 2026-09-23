@@ -1,7 +1,7 @@
 # Zivara - PowerShell Development Runner
 Write-Host "======================================================================" -ForegroundColor Yellow
 Write-Host "          ZIVARA - GUJARAT TRADITIONAL ORNAMENTS" -ForegroundColor Gold
-Write-Host "          Supplied from Kerala, India" -ForegroundColor Yellow
+Write-Host "          Shipped Directly from Gujarat to Your Doorstep" -ForegroundColor Yellow
 Write-Host "======================================================================" -ForegroundColor Yellow
 Write-Host ""
 

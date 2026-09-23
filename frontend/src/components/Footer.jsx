@@ -24,15 +24,15 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-cream-200/90 leading-relaxed font-medium">
-              Gujarat Traditional Ornaments, Supplied from Kerala.
+              Gujarat Traditional Ornaments • Shipped Directly from Gujarat.
             </p>
             <p className="text-xs text-cream-300/70 leading-relaxed">
-              Carefully sourced Gujarat-inspired jewellery and traditional ornament styles, curated and supplied by our Kerala-based business.
+              Customers select an ornament on our website, orders are processed by Zivara, and products are shipped directly from Gujarat to your provided address.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <span className="inline-flex items-center gap-1.5 text-[11px] text-gold-light/90 bg-cream-100/5 px-2.5 py-1 rounded border border-gold/30">
                 <Truck className="w-3.5 h-3.5 text-gold" />
-                <span>Delivery Across Kerala & India</span>
+                <span>Direct Delivery to Your Address Across India</span>
               </span>
             </div>
           </div>
@@ -64,19 +64,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Clear Business Location: Kerala, India */}
+          {/* Direct Shipment from Gujarat */}
           <div className="space-y-4">
             <h3 className="font-royal text-sm font-semibold tracking-widest uppercase text-gold">
-              Business Location & Contact
+              Order Dispatch & Delivery
             </h3>
             <ul className="space-y-3 text-xs text-cream-200/80">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-cream-100 block">Business Location:</strong>
-                  <span>Kerala, India</span>
+                  <strong className="text-cream-100 block">Dispatch Location:</strong>
+                  <span>Gujarat, India</span>
                   <span className="block text-[11px] text-cream-300/60 mt-0.5">
-                    (Ornaments sourced from Gujarat, supplied from Kerala)
+                    (Orders processed by Zivara, shipped directly from Gujarat to your address)
                   </span>
                 </div>
               </li>
@@ -124,12 +124,12 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-cream-300/60 gap-4">
-          <p>© {new Date().getFullYear()} Zivara. Gujarat Traditional Ornaments, Supplied from Kerala, India.</p>
+          <p>© {new Date().getFullYear()} Zivara. Authentic Gujarat Traditional Ornaments • Direct Doorstep Delivery.</p>
           <div className="flex items-center space-x-4">
-            <Link to="/contact" className="hover:text-gold transition-colors">Contact Showroom</Link>
+            <Link to="/contact" className="hover:text-gold transition-colors">Contact Us</Link>
             <span>•</span>
             <a
-              href="http://127.0.0.1:8001/admin/"
+              href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gold transition-colors flex items-center gap-1"
