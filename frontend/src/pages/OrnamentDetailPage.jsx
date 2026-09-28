@@ -18,6 +18,7 @@ import {
 import { fetchOrnamentDetail, fetchOrnaments, getAbsoluteImageUrl } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function OrnamentDetailPage() {
   const { slug } = useParams();
@@ -53,6 +54,8 @@ export default function OrnamentDetailPage() {
     }
     loadData();
   }, [slug]);
+
+  useScrollReveal([relatedOrnaments]);
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -150,10 +153,11 @@ export default function OrnamentDetailPage() {
           {/* Main Large Image Display */}
           <div className="relative aspect-square w-full rounded-3xl overflow-hidden bg-cream-100 border-2 border-gold/40 shadow-royal">
             <img
+              key={activeImage}
               src={activeImage}
               alt={ornament.name}
               onError={(e) => { e.currentTarget.src = '/placeholder-jewel.svg'; }}
-              className="w-full h-full object-cover object-center transition-all duration-300"
+              className="w-full h-full object-cover object-center animate-image-swap"
             />
 
             {/* Badges Overlay */}
@@ -193,10 +197,10 @@ export default function OrnamentDetailPage() {
                 <button
                   key={img.id || idx}
                   onClick={() => setSelectedImageIndex(idx)}
-                  className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all shrink-0 bg-cream-100 ${
+                  className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 shrink-0 bg-cream-100 ${
                     selectedImageIndex === idx
-                      ? 'border-maroon shadow-md scale-105'
-                      : 'border-gold/30 opacity-70 hover:opacity-100'
+                      ? 'border-maroon shadow-royal-gold scale-105 ring-2 ring-gold/40'
+                      : 'border-gold/30 opacity-70 hover:opacity-100 hover:scale-102'
                   }`}
                 >
                   <img
@@ -288,7 +292,7 @@ export default function OrnamentDetailPage() {
               href={getWhatsAppUrl(ornament.name)}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-4 px-6 bg-emerald-700 hover:bg-emerald-800 text-white rounded-2xl text-xs font-bold tracking-widest uppercase shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 group"
+              className="w-full py-4 px-6 bg-emerald-700 hover:bg-emerald-800 text-white rounded-2xl text-xs font-bold tracking-widest uppercase shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5 group btn-luxury-sheen"
             >
               <MessageCircle className="w-5 h-5 text-emerald-200 group-hover:scale-110 transition-transform" />
               <span>Enquire / Purchase on WhatsApp</span>
@@ -345,8 +349,10 @@ export default function OrnamentDetailPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedOrnaments.map((rel) => (
-              <OrnamentCard key={rel.id} ornament={rel} />
+            {relatedOrnaments.map((rel, idx) => (
+              <div key={rel.id} className={`reveal-on-scroll stagger-${(idx % 4) + 1}`}>
+                <OrnamentCard ornament={rel} />
+              </div>
             ))}
           </div>
         </div>

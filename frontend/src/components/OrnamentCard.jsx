@@ -25,7 +25,7 @@ export default function OrnamentCard({ ornament }) {
   }, [ornament.primary_image_url]);
 
   return (
-    <div className="group bg-white rounded-2xl border border-gold/30 hover:border-gold shadow-sm hover:shadow-royal transition-all duration-300 flex flex-col overflow-hidden">
+    <div className="group card-luxury-hover bg-white rounded-2xl border border-gold/30 shadow-sm flex flex-col overflow-hidden">
       {/* Image Container with Luxury Badges */}
       <Link
         to={`/ornaments/${ornament.slug}`}
@@ -36,7 +36,7 @@ export default function OrnamentCard({ ornament }) {
           alt={ornament.name}
           loading="lazy"
           onError={() => setImageSrc('/placeholder-jewel.svg')}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
         />
 
         {/* Gradient Overlay */}
@@ -122,7 +122,7 @@ export default function OrnamentCard({ ornament }) {
               href={getWhatsAppUrl(ornament.name)}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold tracking-wider text-center flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+              className="py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold tracking-wider text-center flex items-center justify-center gap-1.5 transition-colors shadow-sm btn-luxury-sheen"
               title="Enquire / Purchase on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-200" />

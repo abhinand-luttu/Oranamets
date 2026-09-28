@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Search, Filter, Sparkles, X, SlidersHorizontal, RefreshCw } from 'lucide-react';
 import { fetchCategories, fetchOrnaments } from '../api';
 import OrnamentCard from '../components/OrnamentCard';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function CollectionPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -69,6 +70,8 @@ export default function CollectionPage() {
       clearTimeout(timeoutId);
     };
   }, [selectedCategory, searchQuery, availability, ordering]);
+
+  useScrollReveal([ornaments, loading]);
 
   const handleCategorySelect = (slug) => {
     setSelectedCategory(slug);
@@ -208,8 +211,10 @@ export default function CollectionPage() {
         </div>
       ) : ornaments.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {ornaments.map((ornament) => (
-            <OrnamentCard key={ornament.id} ornament={ornament} />
+          {ornaments.map((ornament, idx) => (
+            <div key={ornament.id} className={`reveal-on-scroll stagger-${(idx % 8) + 1}`}>
+              <OrnamentCard ornament={ornament} />
+            </div>
           ))}
         </div>
       ) : (

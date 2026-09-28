@@ -5,6 +5,7 @@ import { fetchCategories, fetchOrnaments } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
 import CategoryCard from '../components/CategoryCard';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function HomePage() {
   const { settings, getWhatsAppUrl, getCallUrl } = useSettings();
@@ -30,6 +31,8 @@ export default function HomePage() {
     }
     loadHomeData();
   }, []);
+
+  useScrollReveal([categories, featuredOrnaments, loading]);
 
   return (
     <div className="space-y-20 pb-20">
@@ -79,7 +82,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                 <Link
                   to="/collection"
-                  className="w-full sm:w-auto px-8 py-4 bg-gold-gradient text-brown-dark font-bold text-xs tracking-widest uppercase rounded-full shadow-royal-gold hover:opacity-95 transition-all flex items-center justify-center gap-2 group"
+                  className="w-full sm:w-auto px-8 py-4 bg-gold-gradient text-brown-dark font-bold text-xs tracking-widest uppercase rounded-full shadow-royal-gold hover:opacity-95 transition-all flex items-center justify-center gap-2 group btn-luxury-sheen"
                 >
                   <span>Explore Collection</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -96,7 +99,7 @@ export default function HomePage() {
                   href={getWhatsAppUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs tracking-widest uppercase rounded-full transition-all flex items-center justify-center gap-2 shadow-md"
+                  className="w-full sm:w-auto px-6 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs tracking-widest uppercase rounded-full transition-all flex items-center justify-center gap-2 shadow-md btn-luxury-sheen"
                 >
                   <MessageCircle className="w-4 h-4 text-emerald-200" />
                   <span>WhatsApp Enquire</span>
@@ -110,7 +113,7 @@ export default function HomePage() {
                 <div className="w-full h-full rounded-2xl overflow-hidden bg-brown-dark relative">
                   {/* Hero Showcase Graphic */}
                   <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-maroon/90 to-brown/95">
-                    <div className="w-24 h-24 rounded-full bg-cream-50/10 border-2 border-gold flex items-center justify-center mb-6 shadow-inner animate-pulse">
+                    <div className="w-24 h-24 rounded-full bg-cream-50/10 border-2 border-gold flex items-center justify-center mb-6 shadow-inner animate-gem-aura">
                       <Gem className="w-12 h-12 text-gold" />
                     </div>
                     <span className="font-royal text-2xl font-bold tracking-widest text-gold-light mb-2">
@@ -121,7 +124,7 @@ export default function HomePage() {
                     </p>
                     <Link
                       to="/collection"
-                      className="px-5 py-2 rounded-full bg-gold/20 hover:bg-gold/30 border border-gold text-gold-light text-xs font-semibold tracking-wider uppercase transition-colors"
+                      className="px-5 py-2 rounded-full bg-gold/20 hover:bg-gold/30 border border-gold text-gold-light text-xs font-semibold tracking-wider uppercase transition-colors btn-luxury-sheen"
                     >
                       Browse Catalogue ↗
                     </Link>
@@ -129,7 +132,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Floating Badge */}
-                <div className="absolute -bottom-5 -left-5 bg-white text-brown p-3.5 rounded-2xl border border-gold shadow-royal flex items-center gap-3">
+                <div className="absolute -bottom-5 -left-5 bg-white text-brown p-3.5 rounded-2xl border border-gold shadow-royal flex items-center gap-3 animate-ambient-float">
                   <div className="w-10 h-10 rounded-xl bg-maroon/10 border border-gold/40 flex items-center justify-center text-maroon">
                     <Truck className="w-5 h-5 text-gold-dark" />
                   </div>
@@ -146,7 +149,7 @@ export default function HomePage() {
 
       {/* 2. HOW ORDER & DELIVERY WORKS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 reveal-on-scroll">
           <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
             Direct & Transparent Process
           </span>
@@ -160,8 +163,8 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
+          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-1">
+            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
               1
             </div>
             <h3 className="font-royal text-base font-bold text-brown">Select an Ornament</h3>
@@ -170,8 +173,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
+          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-2">
+            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
               2
             </div>
             <h3 className="font-royal text-base font-bold text-brown">Place Your Order</h3>
@@ -180,8 +183,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
+          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-3">
+            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
               3
             </div>
             <h3 className="font-royal text-base font-bold text-brown">Order Processed by Zivara</h3>
@@ -190,8 +193,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold">
+          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-4">
+            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
               4
             </div>
             <h3 className="font-royal text-base font-bold text-brown">Shipped from Gujarat</h3>
@@ -204,7 +207,7 @@ export default function HomePage() {
 
       {/* 3. CATEGORIES SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 reveal-on-scroll">
           <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
             Curated Categories
           </span>
@@ -218,15 +221,17 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {categories.map((cat) => (
-            <CategoryCard key={cat.id || cat.slug} category={cat} />
+          {categories.map((cat, idx) => (
+            <div key={cat.id || cat.slug} className={`reveal-on-scroll stagger-${(idx % 8) + 1}`}>
+              <CategoryCard category={cat} />
+            </div>
           ))}
         </div>
       </section>
 
       {/* 4. FEATURED ORNAMENTS SHOWCASE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-on-scroll">
           <div className="space-y-3">
             <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
               Curated Showcase
@@ -254,16 +259,18 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredOrnaments.slice(0, 8).map((orn) => (
-              <OrnamentCard key={orn.id} ornament={orn} />
+            {featuredOrnaments.slice(0, 8).map((orn, idx) => (
+              <div key={orn.id} className={`reveal-on-scroll stagger-${(idx % 8) + 1}`}>
+                <OrnamentCard ornament={orn} />
+              </div>
             ))}
           </div>
         )}
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center reveal-on-scroll">
           <Link
             to="/collection"
-            className="inline-flex items-center gap-3 px-8 py-3.5 bg-maroon hover:bg-maroon-dark text-white text-xs font-semibold tracking-widest uppercase rounded-full shadow-md transition-all"
+            className="inline-flex items-center gap-3 px-8 py-3.5 bg-maroon hover:bg-maroon-dark text-white text-xs font-semibold tracking-widest uppercase rounded-full shadow-md transition-all btn-luxury-sheen"
           >
             <span>Explore Complete Collection</span>
             <ArrowRight className="w-4 h-4 text-gold" />
@@ -275,7 +282,7 @@ export default function HomePage() {
       <section className="bg-cream-100/70 border-y border-gold/30 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4">
+            <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4 card-luxury-hover reveal-on-scroll stagger-1">
               <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold flex items-center justify-center text-maroon">
                 <CheckCircle2 className="w-6 h-6 text-gold-dark" />
               </div>
@@ -287,7 +294,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4">
+            <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4 card-luxury-hover reveal-on-scroll stagger-2">
               <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold flex items-center justify-center text-maroon">
                 <Sparkles className="w-6 h-6 text-gold-dark" />
               </div>
@@ -299,7 +306,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4">
+            <div className="bg-white p-8 rounded-2xl border border-gold/30 shadow-sm space-y-4 card-luxury-hover reveal-on-scroll stagger-3">
               <div className="w-12 h-12 rounded-xl bg-gold/10 border border-gold flex items-center justify-center text-maroon">
                 <Truck className="w-6 h-6 text-gold-dark" />
               </div>
@@ -316,7 +323,7 @@ export default function HomePage() {
 
       {/* 6. WHATSAPP ENQUIRY BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-maroon rounded-3xl p-8 sm:p-12 text-cream-50 relative overflow-hidden border-2 border-gold shadow-royal">
+        <div className="bg-maroon rounded-3xl p-8 sm:p-12 text-cream-50 relative overflow-hidden border-2 border-gold shadow-royal reveal-on-scroll">
           <div className="absolute right-0 top-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="max-w-2xl relative z-10 space-y-6">
@@ -335,7 +342,7 @@ export default function HomePage() {
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full text-xs font-bold tracking-widest uppercase shadow-lg flex items-center justify-center gap-2.5 transition-all"
+                className="w-full sm:w-auto px-8 py-3.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full text-xs font-bold tracking-widest uppercase shadow-lg flex items-center justify-center gap-2.5 transition-all btn-luxury-sheen"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Enquire on WhatsApp (+91 8848242986)</span>

@@ -9,10 +9,10 @@ export default function CategoryCard({ category }) {
   return (
     <Link
       to={`/collection?category=${category.slug}`}
-      className="group relative bg-white rounded-2xl p-6 border border-gold/30 hover:border-gold shadow-sm hover:shadow-royal transition-all duration-300 flex flex-col justify-between overflow-hidden"
+      className="group relative card-luxury-hover bg-white rounded-2xl p-6 border border-gold/30 shadow-sm flex flex-col justify-between overflow-hidden"
     >
       {/* Subtle corner accent */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-cream-100 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-125" />
+      <div className="absolute top-0 right-0 w-16 h-16 bg-cream-100 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 ease-out group-hover:scale-125" />
 
       <div className="relative z-10">
         <div className="w-12 h-12 rounded-xl bg-maroon/10 border border-gold/40 flex items-center justify-center text-maroon mb-4 group-hover:bg-maroon group-hover:text-gold transition-colors duration-300 overflow-hidden">
@@ -21,7 +21,7 @@ export default function CategoryCard({ category }) {
               src={categoryImage}
               alt={category.name}
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500 ease-out"
             />
           ) : (
             <Sparkles className="w-6 h-6" />

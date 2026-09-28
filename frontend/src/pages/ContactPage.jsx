@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Phone, MessageCircle, Mail, MapPin, Clock, Send, Sparkles, CheckCircle2, AlertCircle, Truck, Package } from 'lucide-react';
 import { useSettings } from '../context/SettingsContext';
 import { submitContactInquiry } from '../api';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function ContactPage() {
   const { settings, getWhatsAppUrl, getCallUrl } = useSettings();
@@ -52,10 +53,12 @@ export default function ContactPage() {
     }
   };
 
+  useScrollReveal();
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       {/* Title & Introduction */}
-      <div className="text-center max-w-2xl mx-auto space-y-3">
+      <div className="text-center max-w-2xl mx-auto space-y-3 reveal-on-scroll">
         <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
           Get in Touch
         </span>
@@ -70,7 +73,7 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Column: Direct Contact & Location Information */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6 reveal-on-scroll stagger-1">
           {/* Order & Delivery Workflow Card */}
           <div className="bg-cream-100/90 rounded-3xl p-6 sm:p-8 border-2 border-gold/40 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
@@ -159,7 +162,7 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column: Simple Customer Enquiry Form */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 reveal-on-scroll stagger-2">
           <div className="bg-white rounded-3xl p-8 sm:p-10 border border-gold/30 shadow-royal space-y-6">
             <div className="space-y-2">
               <span className="text-xs tracking-[0.2em] uppercase font-semibold text-gold-dark">
@@ -290,7 +293,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-4 bg-maroon hover:bg-maroon-dark text-white rounded-xl text-xs font-bold tracking-widest uppercase shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-maroon hover:bg-maroon-dark text-white rounded-xl text-xs font-bold tracking-widest uppercase shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 btn-luxury-sheen"
                 >
                   <Send className="w-4 h-4 text-gold" />
                   <span>{submitting ? 'Submitting Enquiry...' : 'Submit Purchase Enquiry'}</span>
