@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { SettingsProvider } from './context/SettingsContext';
 import Navbar from './components/Navbar';
@@ -17,11 +17,18 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  const [hasEntered, setHasEntered] = useState(false);
+
   return (
     <SettingsProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-cream-50 text-brown">
+        <div
+          className={`min-h-screen flex flex-col bg-cream-50 text-brown ${
+            hasEntered ? '' : 'page-entrance'
+          }`}
+          onAnimationEnd={() => setHasEntered(true)}
+        >
           <Navbar />
           <main className="flex-grow">
             <Routes>

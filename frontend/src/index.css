@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-cream-50 text-brown font-sans;
     background-color: #FDFBF7;
@@ -87,4 +91,36 @@
 
 .shimmer-effect:hover::after {
   transform: translateX(100%);
+}
+
+/* ==========================================================================
+   Premium Page-Load Entrance Reveal Animation
+   - Subtle scale & translateY reveal with clean opacity fade
+   - High-performance compositor-only animation (transform + opacity)
+   - Accessible: respects prefers-reduced-motion
+   ========================================================================== */
+@keyframes pageEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-entrance {
+  animation: pageEntrance 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: center top;
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-entrance {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
 }
