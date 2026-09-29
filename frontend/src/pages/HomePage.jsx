@@ -5,6 +5,7 @@ import { fetchCategories, fetchOrnaments } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
 import CategoryCard from '../components/CategoryCard';
+import BridalNecklaceShowcase from '../components/BridalNecklaceShowcase';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 export default function HomePage() {
@@ -147,7 +148,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. HOW ORDER & DELIVERY WORKS */}
+      {/* 2. BRIDAL NECKLACE SHOWCASE SECTION */}
+      <BridalNecklaceShowcase />
+
+      {/* 3. HOW ORDER & DELIVERY WORKS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 reveal-on-scroll">
           <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">

@@ -352,6 +352,88 @@
 }
 
 /* ==========================================================================
+   Bridal Necklace Showcase Section Animations
+   ========================================================================== */
+/* Subtle lifelike breathing & posture micro-sway */
+@keyframes necklaceBreathe {
+  0%, 100% {
+    transform: scale(1.0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.018) translateY(-3px) rotate(0.12deg);
+  }
+}
+
+.animate-necklace-breathe {
+  animation: necklaceBreathe 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Subtle mirror ambient reflection glow pulse */
+@keyframes mirrorWarmGlow {
+  0%, 100% {
+    opacity: 0.20;
+    transform: scale(1.0);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.06);
+  }
+}
+
+.animate-mirror-glow {
+  animation: mirrorWarmGlow 4.8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Smooth golden sheen sweep across the gold necklaces */
+@keyframes necklaceLightSweep {
+  0%, 20% {
+    transform: translateX(-120%) rotate(25deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.75;
+  }
+  55%, 100% {
+    transform: translateX(200%) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+.animate-necklace-sweep {
+  animation: necklaceLightSweep 4.5s ease-in-out infinite 0.8s;
+  will-change: transform, opacity;
+}
+
+/* Jewel glint sparkles for bridal necklace */
+@keyframes jewelSparklePulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+
+.animate-jewel-sparkle-1 {
+  animation: jewelSparklePulse 3.2s ease-in-out infinite 0.2s;
+  will-change: transform, opacity;
+}
+
+.animate-jewel-sparkle-2 {
+  animation: jewelSparklePulse 2.8s ease-in-out infinite 1.4s;
+  will-change: transform, opacity;
+}
+
+.animate-jewel-sparkle-3 {
+  animation: jewelSparklePulse 3.6s ease-in-out infinite 0.9s;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
    Full Accessibility: prefers-reduced-motion
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
@@ -364,7 +446,13 @@
   .animate-sparkle-1,
   .animate-sparkle-2,
   .animate-sparkle-3,
-  .animate-gold-sweep {
+  .animate-gold-sweep,
+  .animate-necklace-breathe,
+  .animate-mirror-glow,
+  .animate-necklace-sweep,
+  .animate-jewel-sparkle-1,
+  .animate-jewel-sparkle-2,
+  .animate-jewel-sparkle-3 {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -391,5 +479,6 @@
     transform: none !important;
   }
 }
+
 
 

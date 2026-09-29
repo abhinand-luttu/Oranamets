@@ -7,7 +7,6 @@ import HomePage from './pages/HomePage';
 import CollectionPage from './pages/CollectionPage';
 import OrnamentDetailPage from './pages/OrnamentDetailPage';
 import ContactPage from './pages/ContactPage';
-import BrandIntroOverlay from './components/BrandIntroOverlay';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -19,13 +18,9 @@ function ScrollToTop() {
 
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
 
   return (
     <SettingsProvider>
-      {showIntro && (
-        <BrandIntroOverlay onComplete={() => setShowIntro(false)} />
-      )}
       <BrowserRouter>
         <ScrollToTop />
         <div
