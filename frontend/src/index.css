@@ -261,13 +261,110 @@
 }
 
 /* ==========================================================================
+   Cinematic Bridal Intro Animation Utilities
+   ========================================================================== */
+@keyframes introZoomSlow {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.055);
+  }
+}
+
+.animate-intro-zoom {
+  animation: introZoomSlow 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform;
+}
+
+@keyframes brideSubtleSway {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(0.25deg);
+  }
+}
+
+.animate-bride-sway {
+  animation: brideSubtleSway 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes jewelSparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.2) rotate(90deg);
+    filter: drop-shadow(0 0 10px rgba(255, 235, 170, 0.95));
+  }
+}
+
+.animate-sparkle-1 {
+  animation: jewelSparkle 2.2s ease-in-out infinite 0.6s;
+}
+
+.animate-sparkle-2 {
+  animation: jewelSparkle 2.6s ease-in-out infinite 1.4s;
+}
+
+.animate-sparkle-3 {
+  animation: jewelSparkle 2.4s ease-in-out infinite 2.1s;
+}
+
+@keyframes goldSheenSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) rotate(30deg);
+  }
+  30% {
+    opacity: 0.65;
+  }
+  60% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200%) rotate(30deg);
+  }
+}
+
+.animate-gold-sweep {
+  animation: goldSheenSweep 3.2s ease-in-out infinite 1.2s;
+  pointer-events: none;
+}
+
+.intro-overlay-active {
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-overlay-exit {
+  opacity: 0 !important;
+  transform: scale(1.025) !important;
+  filter: blur(5px) !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
    Full Accessibility: prefers-reduced-motion
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   .page-entrance,
   .animate-ambient-float,
   .animate-gem-aura,
-  .animate-image-swap {
+  .animate-image-swap,
+  .animate-intro-zoom,
+  .animate-bride-sway,
+  .animate-sparkle-1,
+  .animate-sparkle-2,
+  .animate-sparkle-3,
+  .animate-gold-sweep {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -294,4 +391,5 @@
     transform: none !important;
   }
 }
+
 
