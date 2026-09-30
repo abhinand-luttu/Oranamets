@@ -52,37 +52,37 @@ export default function BridalNecklaceShowcase() {
                   <div className="w-[180%] h-full -left-[40%] absolute bg-gradient-to-r from-transparent via-gold-light/25 to-transparent skew-x-[-25deg] animate-necklace-sweep" />
                 </div>
 
-                {/* Jewel Sparkle Stars positioned at the statement gold necklace */}
-                {/* 1. Sparkle on Statement Necklace Centerpiece */}
+                {/* Jewel Sparkle Stars positioned at the statement gold and emerald necklace */}
+                {/* 1. Sparkle on Center Tiered Emerald Drop */}
                 <div 
-                  className="absolute top-[68%] left-[52%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-1"
+                  className="absolute top-[75%] left-[58%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-1"
                   aria-hidden="true"
                 >
-                  <Sparkles className="w-5 h-5 text-gold-light drop-shadow-[0_0_8px_rgba(212,175,55,0.9)]" />
+                  <Sparkles className="w-5 h-5 text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
                 </div>
 
-                {/* 2. Sparkle on Statement Left Drop */}
+                {/* 2. Sparkle on Left Emerald Drop */}
                 <div 
-                  className="absolute top-[63%] left-[47%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
+                  className="absolute top-[70%] left-[51%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
                   aria-hidden="true"
                 >
                   <Sparkles className="w-4 h-4 text-cream-50 drop-shadow-[0_0_8px_rgba(255,245,210,0.95)]" />
                 </div>
 
-                {/* 3. Sparkle on Elegant Hand Gesture near Necklace */}
+                {/* 3. Sparkle on Elegant Hand Gesture */}
                 <div 
-                  className="absolute top-[58%] left-[64%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-3"
+                  className="absolute top-[54%] left-[40%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-3"
                   aria-hidden="true"
                 >
                   <Sparkles className="w-4 h-4 text-gold drop-shadow-[0_0_6px_rgba(197,160,89,0.85)]" />
                 </div>
 
-                {/* 4. Sparkle on Statement Right Drop */}
+                {/* 4. Sparkle on Right Emerald Drop */}
                 <div 
-                  className="absolute top-[62%] left-[56%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
+                  className="absolute top-[70%] left-[67%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
                   aria-hidden="true"
                 >
-                  <div className="w-2 h-2 rounded-full bg-gold-light shadow-[0_0_8px_#C5A059]" />
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
                 </div>
               </div>
 
@@ -91,12 +91,9 @@ export default function BridalNecklaceShowcase() {
                 <div className="flex items-center gap-2">
                   <Gem className="w-4 h-4 text-gold flex-shrink-0" />
                   <span className="text-[11px] sm:text-xs font-royal font-bold tracking-wider text-gold-light">
-                    Traditional Layered Bridal Necklaces
+                    Exquisite Emerald Necklace Set
                   </span>
                 </div>
-                <span className="text-[10px] sm:text-xs text-cream-200/80 font-medium">
-                  22K Antique Finish
-                </span>
               </div>
             </div>
           </div>
@@ -106,23 +103,20 @@ export default function BridalNecklaceShowcase() {
             {/* Header Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-maroon/10 border border-gold/50 text-maroon text-xs font-semibold tracking-widest uppercase">
               <Sparkles className="w-3.5 h-3.5 text-gold-dark" />
-              <span>Kerala Bridal Heritage • Gujarat Crafted</span>
+              <span>Royal Emerald Heritage • Gujarat Crafted</span>
             </div>
 
             {/* Main Section Heading */}
             <div className="space-y-2">
               <h2 className="font-royal text-2xl sm:text-3xl lg:text-4xl font-bold text-brown leading-tight">
-                The Timeless Allure of <span className="text-maroon">Traditional Bridal Necklaces</span>
+                The Timeless Allure of <span className="text-maroon">Exquisite Necklace Sets</span>
               </h2>
               <div className="w-16 h-1 bg-gold rounded-full mx-auto lg:mx-0" />
             </div>
 
             {/* Narrative Description */}
             <p className="text-xs sm:text-sm text-brown/75 leading-relaxed">
-              Every bride deserves ornaments that tell a story of grace and grandeur. 
-              Our traditional bridal necklaces combine the sacred artistry of multi-layered 
-              antique temple chokers, elegant kasu malas, and delicate gemstone centerpieces—crafted 
-              in authentic Gujarat ateliers and delivered directly to your doorstep.
+              Timeless beauty, crafted for you. Our exquisite statement necklace sets combine the royal artistry of deep emerald green gemstones, luminous uncut polki diamonds, and delicate hanging emerald bead drops—crafted in authentic Gujarat ateliers and delivered directly to your doorstep.
             </p>
 
             {/* Key Craftsmanship Features */}
@@ -130,16 +124,16 @@ export default function BridalNecklaceShowcase() {
               <div className="p-3 rounded-xl bg-white/80 border border-gold/30 shadow-sm flex items-start gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-gold-dark mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-xs font-bold text-brown font-royal">Multi-Layer Harmony</h4>
-                  <p className="text-[11px] text-brown/65">Antique choker paired with long traditional kasu mala.</p>
+                  <h4 className="text-xs font-bold text-brown font-royal">Royal Emerald & Polki</h4>
+                  <p className="text-[11px] text-brown/65">Luminous uncut polki diamonds set with deep emerald green stones.</p>
                 </div>
               </div>
 
               <div className="p-3 rounded-xl bg-white/80 border border-gold/30 shadow-sm flex items-start gap-2.5">
                 <Award className="w-4 h-4 text-gold-dark mt-0.5 flex-shrink-0" />
                 <div>
-                  <h4 className="text-xs font-bold text-brown font-royal">Temple Motif Gold</h4>
-                  <p className="text-[11px] text-brown/65">Intricate floral carvings and auspicious bridal crests.</p>
+                  <h4 className="text-xs font-bold text-brown font-royal">Handcrafted Bead Drops</h4>
+                  <p className="text-[11px] text-brown/65">Fine emerald-hued drop beads with delicate pearl accents.</p>
                 </div>
               </div>
             </div>

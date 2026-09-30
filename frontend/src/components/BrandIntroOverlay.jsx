@@ -85,29 +85,29 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
 
           {/* Jewellery Sparkle Highlights (positioned over the statement necklace) */}
           {/* Statement Necklace Centerpoint Sparkle 1 */}
-          <div className="absolute top-[72%] left-[49%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
-            <svg className="w-6 h-6 text-amber-100" viewBox="0 0 24 24" fill="currentColor">
+          <div className="absolute top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
+            <svg className="w-6 h-6 text-emerald-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
           {/* Statement Necklace Left Drop Sparkle 2 */}
-          <div className="absolute top-[68%] left-[44%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-2">
+          <div className="absolute top-[59%] left-[45%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-2">
             <svg className="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
           {/* Statement Necklace Right Drop Sparkle 3 */}
-          <div className="absolute top-[68%] left-[54%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-3">
+          <div className="absolute top-[59%] left-[55%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-3">
             <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
-          {/* Statement Necklace Collar Shimmer Sparkle 4 */}
-          <div className="absolute top-[63%] left-[51%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
-            <svg className="w-4 h-4 text-amber-200" viewBox="0 0 24 24" fill="currentColor">
+          {/* Statement Necklace Bottom Emerald Bead Sparkle 4 */}
+          <div className="absolute top-[69%] left-[50%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
+            <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
@@ -163,7 +163,7 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
 
           {/* Subtitle */}
           <p className="font-royal text-xs sm:text-sm tracking-[0.3em] uppercase text-gold-light font-medium drop-shadow">
-            Gujarat Bridal Ornaments • Bridal Collection
+            Exquisite Jewellery Collection • Statement Necklaces
           </p>
 
           <p className="text-[11px] text-cream-200/80 tracking-widest uppercase">
