@@ -71,42 +71,42 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <img
           src={imageSrc}
-          alt="Traditional Indian Bride in Exquisite Gold Ornaments"
+          alt="Modern Luxury Jewellery Campaign - Statement Gold Necklace"
           onLoad={() => setImageLoaded(true)}
-          className={`w-full h-full object-cover object-[52%_32%] animate-intro-zoom ${
+          className={`w-full h-full object-cover object-[50%_35%] animate-intro-zoom ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-700`}
         />
 
-        {/* 2. Micro-motion Bride Animation Container (Subtle sway & natural gaze breath) */}
+        {/* 2. Micro-motion Model Animation Container (Subtle sway & natural gaze breath) */}
         <div className="absolute inset-0 w-full h-full pointer-events-none animate-bride-sway">
-          {/* Subtle Golden Sheen Light Sweep across the bridal ornaments */}
+          {/* Subtle Golden Sheen Light Sweep across the statement necklace */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-light/20 to-transparent w-[200%] h-full animate-gold-sweep" />
 
-          {/* Jewellery Sparkle Highlights (positioned over choker, haar, maang tikka, and bangles) */}
-          {/* Choker Sparkle 1 */}
-          <div className="absolute top-[48%] left-[53%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
+          {/* Jewellery Sparkle Highlights (positioned over the statement necklace) */}
+          {/* Statement Necklace Centerpoint Sparkle 1 */}
+          <div className="absolute top-[72%] left-[49%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
             <svg className="w-6 h-6 text-amber-100" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
-          {/* Long Haar Sparkle 2 */}
-          <div className="absolute top-[68%] left-[51%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-2">
+          {/* Statement Necklace Left Drop Sparkle 2 */}
+          <div className="absolute top-[68%] left-[44%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-2">
             <svg className="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
-          {/* Maang Tikka Sparkle 3 */}
-          <div className="absolute top-[18%] left-[48%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-3">
+          {/* Statement Necklace Right Drop Sparkle 3 */}
+          <div className="absolute top-[68%] left-[54%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-3">
             <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
-          {/* Bangles Sparkle 4 */}
-          <div className="absolute top-[92%] left-[43%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
+          {/* Statement Necklace Collar Shimmer Sparkle 4 */}
+          <div className="absolute top-[63%] left-[51%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
             <svg className="w-4 h-4 text-amber-200" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>

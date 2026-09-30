@@ -30,21 +30,21 @@ export default function BridalNecklaceShowcase() {
               <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
                 <img
                   src={bridalNecklaceImg}
-                  alt="Kerala Indian bride wearing traditional layered gold necklaces smiling in the mirror"
-                  className="w-full h-full object-cover object-[52%_32%] animate-necklace-breathe transition-transform duration-700 select-none"
+                  alt="Modern fashion model wearing a luxury gold statement necklace in an editorial jewellery campaign"
+                  className="w-full h-full object-cover object-[50%_35%] animate-necklace-breathe transition-transform duration-700 select-none"
                   loading="lazy"
                 />
 
                 {/* Soft Vignette Overlay for Luxury Boutique Ambience */}
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/50 via-transparent to-brown-dark/20 pointer-events-none" />
 
-                {/* Mirror Ambient Warmth Pulse (Over Mirror Reflection Area) */}
+                {/* Subtle Ambient Warmth Glow behind model */}
                 <div 
-                  className="absolute top-[18%] left-[16%] w-[30%] h-[64%] rounded-full bg-gold/15 blur-xl pointer-events-none animate-mirror-glow" 
+                  className="absolute top-[20%] left-[30%] w-[40%] h-[60%] rounded-full bg-gold/15 blur-xl pointer-events-none animate-mirror-glow" 
                   aria-hidden="true"
                 />
 
-                {/* Diagonal Golden Sheen Sweep across the Gold Necklaces */}
+                {/* Diagonal Golden Sheen Sweep across the Statement Necklace */}
                 <div 
                   className="absolute inset-0 pointer-events-none overflow-hidden z-10"
                   aria-hidden="true"
@@ -52,37 +52,37 @@ export default function BridalNecklaceShowcase() {
                   <div className="w-[180%] h-full -left-[40%] absolute bg-gradient-to-r from-transparent via-gold-light/25 to-transparent skew-x-[-25deg] animate-necklace-sweep" />
                 </div>
 
-                {/* Jewel Sparkle Stars positioned at the traditional gold necklace layers */}
-                {/* 1. Sparkle on Choker Centerpiece */}
+                {/* Jewel Sparkle Stars positioned at the statement gold necklace */}
+                {/* 1. Sparkle on Statement Necklace Centerpiece */}
                 <div 
-                  className="absolute top-[44%] left-[64%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-1"
+                  className="absolute top-[68%] left-[52%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-1"
                   aria-hidden="true"
                 >
                   <Sparkles className="w-5 h-5 text-gold-light drop-shadow-[0_0_8px_rgba(212,175,55,0.9)]" />
                 </div>
 
-                {/* 2. Sparkle on Kasu Mala / Center Pendant */}
+                {/* 2. Sparkle on Statement Left Drop */}
                 <div 
-                  className="absolute top-[63%] left-[59%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
+                  className="absolute top-[63%] left-[47%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
                   aria-hidden="true"
                 >
                   <Sparkles className="w-4 h-4 text-cream-50 drop-shadow-[0_0_8px_rgba(255,245,210,0.95)]" />
                 </div>
 
-                {/* 3. Sparkle on Hand Touch / Bangles near Necklace */}
+                {/* 3. Sparkle on Elegant Hand Gesture near Necklace */}
                 <div 
-                  className="absolute top-[52%] left-[51%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-3"
+                  className="absolute top-[58%] left-[64%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-3"
                   aria-hidden="true"
                 >
                   <Sparkles className="w-4 h-4 text-gold drop-shadow-[0_0_6px_rgba(197,160,89,0.85)]" />
                 </div>
 
-                {/* 4. Subtle Sparkle in Mirror Reflection */}
+                {/* 4. Sparkle on Statement Right Drop */}
                 <div 
-                  className="absolute top-[50%] left-[32%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
+                  className="absolute top-[62%] left-[56%] pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-2"
                   aria-hidden="true"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold-light shadow-[0_0_6px_#C5A059]" />
+                  <div className="w-2 h-2 rounded-full bg-gold-light shadow-[0_0_8px_#C5A059]" />
                 </div>
               </div>
 
