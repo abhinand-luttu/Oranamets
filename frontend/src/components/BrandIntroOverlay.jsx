@@ -148,7 +148,7 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
 
           {/* Subtitle */}
           <p className="font-royal text-xs sm:text-sm tracking-[0.25em] uppercase text-gold-light font-medium drop-shadow">
-            Modern Statement Necklaces & Gujarat Ornaments
+            Designer Bridal Necklaces & Gujarat Craftsmanship
           </p>
 
           <p className="text-[11px] text-cream-200/80 tracking-widest uppercase pb-2">
@@ -161,7 +161,7 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
             type="button"
             className="px-6 py-2.5 bg-gold-gradient text-brown-dark rounded-full text-xs font-bold tracking-widest uppercase shadow-royal-gold hover:opacity-95 transition-all flex items-center gap-2 btn-luxury-sheen"
           >
-            <span>Explore Collection</span>
+            <span>Explore Bridal Collection</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

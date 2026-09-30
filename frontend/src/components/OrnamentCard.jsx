@@ -77,7 +77,7 @@ export default function OrnamentCard({ ornament }) {
           {/* Category & Purity Line */}
           <div className="flex items-center justify-between gap-2 mb-1.5">
             <span className="text-[11px] font-semibold tracking-wider uppercase text-gold-dark truncate">
-              {ornament.category_name || 'Gujarat Style'}
+              {ornament.category_name || 'Bridal Necklace'}
             </span>
             {ornament.purity && (
               <span className="text-[11px] text-brown/60 truncate shrink-0 max-w-[140px]" title={ornament.purity}>
