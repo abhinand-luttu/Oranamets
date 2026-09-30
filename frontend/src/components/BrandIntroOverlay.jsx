@@ -67,7 +67,7 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <img
           src={imageSrc}
-          alt="Modern Luxury Jewellery Campaign - Royal Gold & Kundan Statement Necklace"
+          alt="Modern Luxury Jewellery Campaign - Royal Gold Statement Bridal Necklace"
           onLoad={() => setImageLoaded(true)}
           className={`w-full h-full object-cover object-[50%_35%] animate-intro-zoom ${
             imageLoaded ? 'opacity-100' : 'opacity-0'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, Phone, MessageCircle, Gem, CheckCircle2, Truck } from 'lucide-react';
+import { Sparkles, ArrowRight, Phone, MessageCircle, Gem, CheckCircle2, Truck, X, ShieldCheck } from 'lucide-react';
 import { fetchOrnaments } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
@@ -11,6 +11,113 @@ export default function HomePage() {
   const { settings, getWhatsAppUrl, getCallUrl } = useSettings();
   const [featuredOrnaments, setFeaturedOrnaments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeStepModal, setActiveStepModal] = useState(null);
+
+  // Close modal with Escape key and lock body scroll
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveStepModal(null);
+      }
+    };
+    if (activeStepModal) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [activeStepModal]);
+
+  const orderSteps = [
+    {
+      id: 1,
+      stepNum: "01",
+      tag: "Artisan Selection",
+      title: "Choose Your Bridal Necklace",
+      shortDesc: "Browse our signature collection of handcrafted bridal necklaces, royal choker sets, and statement wedding pieces crafted with authentic Gujarat artistry.",
+      icon: Gem,
+      modalTitle: "Choose Your Bridal Necklace",
+      modalTagline: "Handcrafted Bridal Artistry • Gujarat Heritage Workshop",
+      modalHighlights: [
+        {
+          title: "Authentic Gujarat Craftsmanship",
+          desc: "Each necklace is meticulously shaped by master artisans in Gujarat, blending royal wedding heritage aesthetics with refined, lightweight comfort."
+        },
+        {
+          title: "HD Video & Close-Up Previews",
+          desc: "Need to inspect details before deciding? Connect with us on WhatsApp to receive high-definition video clips and photos of how the necklace drapes and shines."
+        },
+        {
+          title: "Custom Sizing & Matching Sets",
+          desc: "Coordinate matching bridal earrings, maang tikka, and adjust chain lengths to complement your wedding outfit flawlessly."
+        }
+      ],
+      actionType: "link",
+      actionText: "Browse Bridal Collection",
+      actionLink: "/collection",
+      whatsAppText: "Hello Zivara! I would like to explore your bridal necklace designs and see live video previews."
+    },
+    {
+      id: 2,
+      stepNum: "02",
+      tag: "Direct WhatsApp Order",
+      title: "Order & Confirm on WhatsApp",
+      shortDesc: "Click 'Enquire / Purchase' on any design to instantly connect with our team at +91 8848242986. We verify live availability, specifications, and lock your order.",
+      icon: MessageCircle,
+      modalTitle: "Order & Confirm on WhatsApp",
+      modalTagline: "1-on-1 Bridal Specialist Concierge • Zero Intermediaries",
+      modalHighlights: [
+        {
+          title: "Personalized WhatsApp Concierge",
+          desc: "Connect directly with our dedicated Zivara jewellery consultant at +91 8848242986 without going through complicated checkouts or intermediaries."
+        },
+        {
+          title: "Live Stock & Video Confirmation",
+          desc: "We verify ready-to-dispatch availability, share weight and purity specifications, and send live video proof of your selected necklace."
+        },
+        {
+          title: "Transparent Pricing & Simple Booking",
+          desc: "Clear, all-inclusive pricing with transparent transit billing and immediate order confirmation with zero hidden charges."
+        }
+      ],
+      actionType: "whatsapp",
+      actionText: "Chat on WhatsApp (+91 8848242986)",
+      actionLink: null,
+      whatsAppText: "Hello Zivara! I would like to confirm an order for a bridal necklace."
+    },
+    {
+      id: 3,
+      stepNum: "03",
+      tag: "Safe Doorstep Delivery",
+      title: "Shipped from Gujarat to Your Doorstep",
+      shortDesc: "Dispatched straight from our Gujarat workshop in tamper-proof luxury packaging with insured express courier service delivered directly to your address.",
+      icon: Truck,
+      modalTitle: "Shipped from Gujarat to Your Doorstep",
+      modalTagline: "Dispatched from Gujarat • Insured Express Transit Across India",
+      modalHighlights: [
+        {
+          title: "Luxury Tamper-Proof Packaging",
+          desc: "Each bridal necklace is nestled in custom velvet casing inside a tamper-evident, sealed security box to ensure pristine, scratch-free arrival."
+        },
+        {
+          title: "Insured Air Express Courier Dispatch",
+          desc: "Directly shipped from our Gujarat workshop via premium air express couriers with 100% transit insurance coverage."
+        },
+        {
+          title: "Real-Time Tracking to Your Doorstep",
+          desc: "Receive live courier tracking links on WhatsApp the moment your package is dispatched, right up to safe handover at your given address."
+        }
+      ],
+      actionType: "whatsapp",
+      actionText: "Track Shipping Details",
+      actionLink: null,
+      whatsAppText: "Hello Zivara! I would like to know more about shipping timelines and delivery to my address."
+    }
+  ];
 
   useEffect(() => {
     async function loadHomeData() {
@@ -61,7 +168,7 @@ export default function HomePage() {
 
               {/* Subheading */}
               <p className="text-sm sm:text-base text-cream-200/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-                Discover our signature collection of handcrafted bridal necklaces, royal Jadau sets, and statement wedding pieces. Select your dream necklace online, processed by Zivara, and delivered safely from Gujarat to your doorstep.
+                Discover our signature collection of handcrafted bridal necklaces and statement wedding pieces. Select your dream necklace online, processed by Zivara, and delivered safely from Gujarat to your doorstep.
               </p>
 
               {/* Key Highlights */}
@@ -109,13 +216,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Hero Visual - Modern Model Wearing Royal Gold & Kundan Statement Necklace */}
+            {/* Right Hero Visual - Modern Model Wearing Royal Gold Statement Bridal Necklace */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md aspect-[4/3] sm:aspect-square rounded-3xl p-2.5 bg-gradient-to-tr from-gold/50 via-gold/20 to-transparent border-2 border-gold shadow-2xl overflow-hidden group">
                 <div className="w-full h-full rounded-2xl overflow-hidden bg-brown-dark relative">
                   <img
                     src={modernHeroImg}
-                    alt="Modern fashion model wearing an exquisite royal yellow gold and kundan statement bridal necklace"
+                    alt="Modern fashion model wearing an exquisite royal yellow gold statement bridal necklace"
                     className="w-full h-full object-cover object-[50%_35%] select-none group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
@@ -133,22 +240,6 @@ export default function HomePage() {
                     <Sparkles className="w-6 h-6 text-amber-200 drop-shadow-[0_0_8px_rgba(245,158,11,0.9)]" />
                   </div>
                 </div>
-
-                {/* Floating Bottom Badge */}
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 text-brown p-3 rounded-2xl border border-gold shadow-royal flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-maroon flex items-center justify-center text-gold shadow-sm">
-                      <Gem className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-brown font-royal">Royal Gold & Kundan Bridal Necklace</p>
-                      <p className="text-[10px] text-brown/65">Shipped Directly from Gujarat</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] uppercase font-bold text-gold-dark tracking-wider hidden sm:inline">
-                    Signature
-                  </span>
-                </div>
               </div>
             </div>
           </div>
@@ -156,63 +247,226 @@ export default function HomePage() {
       </section>
 
       {/* ===================================================================
-          2. HOW ORDER & DELIVERY WORKS (BRIDAL NECKLACE FOCUS)
+          2. HOW ORDER & DELIVERY WORKS (FULL-WIDTH 3-STEP EXPERIENCE)
           =================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 reveal-on-scroll">
-          <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
-            Direct & Transparent Process
-          </span>
-          <h2 className="font-royal text-3xl sm:text-4xl font-bold text-brown">
-            How It Works: Order to Delivery
+      <section className="w-full bg-gradient-to-b from-[#FAF7F0] via-white to-[#FAF7F0] border-y-2 border-gold/40 py-16 sm:py-20 lg:py-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 overflow-hidden relative shadow-inner">
+        {/* Subtle decorative background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:28px_28px] opacity-15 pointer-events-none" />
+
+        {/* Full-width Section Header */}
+        <div className="w-full max-w-[1720px] mx-auto text-center space-y-4 mb-12 sm:mb-16 lg:mb-20 reveal-on-scroll">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-cream-100/90 border border-gold/50 shadow-sm text-gold-dark text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase">
+            <Sparkles className="w-4 h-4 text-gold" />
+            <span>3-Step Seamless Process • Direct From Gujarat</span>
+          </div>
+
+          <h2 className="font-royal text-3xl sm:text-5xl lg:text-6xl font-bold text-brown tracking-tight leading-[1.15]">
+            How It Works: <span className="text-gold-gradient">Order to Delivery</span>
           </h2>
-          <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
-          <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-            Select your bridal necklace on the website, we process your order, and ship it directly from Gujarat to your doorstep.
+
+          <div className="flex items-center justify-center gap-3 pt-1">
+            <div className="h-[2px] w-20 sm:w-40 bg-gradient-to-r from-transparent via-gold to-gold" />
+            <div className="w-3.5 h-3.5 rotate-45 bg-gold border border-gold-dark shadow-sm" />
+            <div className="h-[2px] w-20 sm:w-40 bg-gradient-to-l from-transparent via-gold to-gold" />
+          </div>
+
+          <p className="text-sm sm:text-base lg:text-lg text-brown/75 max-w-4xl mx-auto leading-relaxed font-light">
+            Select your dream bridal necklace online, easily confirm on WhatsApp with our jewellery specialists, and receive your handcrafted piece delivered safely from Gujarat straight to your doorstep.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-1 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              1
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Choose Your Bridal Necklace</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Explore exquisite designer bridal necklaces, traditional kundan sets, and statement chokers in our collection.
-            </p>
-          </div>
+        {/* 3-Step Full Screen Width Grid */}
+        <div className="w-full max-w-[1720px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
+          {orderSteps.map((step, idx) => {
+            const IconComponent = step.icon;
+            return (
+              <div
+                key={step.id}
+                onClick={() => setActiveStepModal(step.id)}
+                className={`group relative bg-white/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 lg:p-10 border-2 border-gold/30 hover:border-gold shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer flex flex-col justify-between overflow-hidden card-luxury-hover step-card-hover reveal-on-scroll stagger-${idx + 1}`}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveStepModal(step.id);
+                  }
+                }}
+                aria-label={`Open details for ${step.title}`}
+              >
+                {/* Large Background Watermark Number */}
+                <span
+                  className="absolute -right-4 -top-6 text-8xl sm:text-9xl font-royal font-bold text-cream-200/40 select-none pointer-events-none group-hover:text-gold/20 group-hover:scale-105 transition-all duration-500"
+                  aria-hidden="true"
+                >
+                  {step.stepNum}
+                </span>
 
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-2 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              2
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Place Your Order</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Click “Enquire / Purchase” to open WhatsApp with your chosen bridal necklace details pre-filled.
-            </p>
-          </div>
+                {/* Top Badge & Tag Row */}
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-center justify-between">
+                    <div className="w-14 h-14 rounded-2xl bg-cream-100 group-hover:bg-maroon text-maroon group-hover:text-gold-light font-royal font-bold text-xl flex items-center justify-center border-2 border-gold shadow-md transition-all duration-500 group-hover:scale-110 step-badge">
+                      {step.stepNum}
+                    </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-3 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              3
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Order Processed by Zivara</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Our team confirms necklace specifications, price, availability, and securely prepares your dispatch.
-            </p>
-          </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-cream-100/90 border border-gold/35 text-gold-dark group-hover:border-gold transition-colors">
+                        {step.tag}
+                      </span>
+                    </div>
+                  </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-4 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              4
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Shipped from Gujarat</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Your bridal necklace is safely packaged and shipped directly from Gujarat with tracking straight to your address.
-            </p>
-          </div>
+                  {/* Icon & Title */}
+                  <div className="space-y-3 pt-2">
+                    <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/40 flex items-center justify-center text-maroon group-hover:bg-maroon group-hover:text-gold transition-colors duration-300">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-royal text-xl sm:text-2xl font-bold text-brown group-hover:text-maroon transition-colors leading-snug">
+                      {step.title}
+                    </h3>
+                  </div>
+
+                  {/* Short Description */}
+                  <p className="text-xs sm:text-sm text-brown/75 leading-relaxed font-light">
+                    {step.shortDesc}
+                  </p>
+                </div>
+
+                {/* Bottom Interactive Trigger Action */}
+                <div className="relative z-10 pt-6 mt-6 border-t border-cream-200/80">
+                  <div className="w-full py-3 px-5 rounded-2xl bg-cream-100/90 group-hover:bg-gold-gradient group-hover:text-brown-dark text-maroon text-xs font-bold tracking-wider uppercase border border-gold/40 flex items-center justify-between transition-all duration-300 shadow-sm btn-luxury-sheen">
+                    <span>View Step Details & Guide</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                  </div>
+                  <span className="block text-[11px] text-center text-brown/50 pt-2 tracking-wide font-medium">
+                    Tap to open interactive guide
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        {/* ===============================================================
+            INTERACTIVE MODAL POPUP FOR ORDER TO DELIVERY STEPS
+            =============================================================== */}
+        {activeStepModal && (() => {
+          const currentStep = orderSteps.find((s) => s.id === activeStepModal);
+          if (!currentStep) return null;
+          const IconComp = currentStep.icon;
+
+          return (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm animate-modal-backdrop"
+              onClick={() => setActiveStepModal(null)}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="order-step-modal-title"
+            >
+              <div
+                className="relative w-full max-w-2xl bg-[#FCFAF6] border-2 border-gold rounded-3xl p-6 sm:p-10 shadow-2xl animate-modal-content overflow-hidden max-h-[90vh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Decorative Top Accent Bar */}
+                <div className="absolute top-0 left-0 right-0 h-2.5 bg-gold-gradient" />
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setActiveStepModal(null)}
+                  className="absolute top-5 right-5 w-10 h-10 rounded-full bg-cream-100 hover:bg-cream-200 text-brown border border-gold/50 flex items-center justify-center transition-all duration-200 shadow-sm hover:rotate-90"
+                  aria-label="Close dialog"
+                >
+                  <X className="w-5 h-5 text-brown" />
+                </button>
+
+                {/* Modal Header */}
+                <div className="space-y-4 pt-2 pb-6 border-b border-gold/30">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3.5 py-1 rounded-full bg-maroon text-gold-light text-xs font-bold tracking-widest uppercase">
+                      Step {currentStep.stepNum} of 03
+                    </span>
+                    <span className="text-xs text-gold-dark font-semibold tracking-wider uppercase">
+                      {currentStep.tag}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold flex items-center justify-center text-maroon flex-shrink-0">
+                      <IconComp className="w-6 h-6 text-maroon" />
+                    </div>
+                    <div>
+                      <h3
+                        id="order-step-modal-title"
+                        className="font-royal text-2xl sm:text-3xl font-bold text-brown leading-tight"
+                      >
+                        {currentStep.modalTitle}
+                      </h3>
+                      <p className="text-xs text-brown/65 font-medium mt-0.5">
+                        {currentStep.modalTagline}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Highlights List */}
+                <div className="py-6 space-y-4">
+                  <p className="text-xs font-bold uppercase tracking-wider text-gold-dark">
+                    Key Process Details & Customer Assurance
+                  </p>
+                  <div className="space-y-3.5">
+                    {currentStep.modalHighlights.map((highlight, hIdx) => (
+                      <div
+                        key={hIdx}
+                        className="p-4 rounded-2xl bg-white border border-gold/25 shadow-sm space-y-1.5"
+                      >
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <h4 className="font-royal text-base font-bold text-brown">
+                            {highlight.title}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-brown/70 leading-relaxed font-light pl-6">
+                          {highlight.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Modal Actions */}
+                <div className="pt-4 border-t border-gold/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  {currentStep.actionType === 'link' ? (
+                    <Link
+                      to={currentStep.actionLink}
+                      onClick={() => setActiveStepModal(null)}
+                      className="w-full sm:w-auto px-6 py-3 bg-gold-gradient text-brown-dark font-bold text-xs tracking-widest uppercase rounded-full shadow-md flex items-center justify-center gap-2 hover:opacity-95 transition-opacity btn-luxury-sheen"
+                    >
+                      <span>{currentStep.actionText}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  ) : (
+                    <a
+                      href={getWhatsAppUrl(currentStep.whatsAppText)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs tracking-widest uppercase rounded-full shadow-md flex items-center justify-center gap-2 transition-colors btn-luxury-sheen"
+                    >
+                      <MessageCircle className="w-4 h-4 text-emerald-200" />
+                      <span>{currentStep.actionText}</span>
+                    </a>
+                  )}
+
+                  <button
+                    onClick={() => setActiveStepModal(null)}
+                    className="w-full sm:w-auto px-6 py-3 border border-brown/30 hover:bg-cream-100 text-brown font-semibold text-xs tracking-widest uppercase rounded-full transition-colors"
+                  >
+                    Close Guide
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
       {/* ===================================================================
@@ -303,7 +557,7 @@ export default function HomePage() {
                 Shipped Directly from Gujarat
               </h3>
               <p className="text-xs text-brown/70 leading-relaxed">
-                Every bridal necklace represents authentic Gujarat artistry — from Vadodara-style royal Jadau Kundan to heritage wedding pieces, dispatched directly from Gujarat.
+                Every bridal necklace represents authentic Gujarat artistry — from royal artisan bridal jewellery to heritage wedding pieces, dispatched directly from Gujarat.
               </p>
             </div>
 
@@ -340,7 +594,7 @@ export default function HomePage() {
             </h2>
 
             <p className="text-xs sm:text-sm text-cream-200/90 leading-relaxed font-light">
-              Looking for a custom bridal necklace, matching wedding jewellery, or bespoke Gujarat kundan set? Contact our team directly on WhatsApp or phone at +91 8848242986. We'll share product images, exact pricing, and arrange direct delivery to your address.
+              Looking for a custom bridal necklace, matching wedding jewellery, or bespoke Gujarat bridal set? Contact our team directly on WhatsApp or phone at +91 8848242986. We'll share product images, exact pricing, and arrange direct delivery to your address.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">

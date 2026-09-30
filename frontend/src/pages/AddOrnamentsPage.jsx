@@ -348,7 +348,7 @@ export default function AddOrnamentsPage() {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Royal Antique Jadau Choker"
+                    placeholder="e.g. Royal Antique Bridal Choker"
                     className="w-full px-4 py-3 rounded-xl border border-gold/40 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none text-sm transition-all bg-cream-50/40"
                   />
                 </div>
@@ -449,7 +449,7 @@ export default function AddOrnamentsPage() {
                     type="text"
                     value={purity}
                     onChange={(e) => setPurity(e.target.value)}
-                    placeholder="e.g. 22K Gold, Antique Jadau, Kundan"
+                    placeholder="e.g. 22K Gold, Antique Finish, Royal Bridal"
                     className="w-full px-4 py-3 rounded-xl border border-gold/40 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none text-sm transition-all bg-cream-50/40"
                   />
                 </div>

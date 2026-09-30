@@ -102,7 +102,7 @@ export default function CollectionPage() {
         </h1>
         <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
         <p className="text-xs sm:text-sm text-brown/70">
-          Browse through our master collection of Gujarati Jadau, Kundan, Polki, and bridal jewellery.
+          Browse through our master collection of handcrafted bridal jewellery, designer necklaces, and wedding pieces.
         </p>
       </div>
 
@@ -117,7 +117,7 @@ export default function CollectionPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by ornament name, purity, Kundan, Polki..."
+              placeholder="Search by necklace name, purity, style..."
               className="w-full pl-11 pr-10 py-3 rounded-xl border border-cream-200 bg-cream-50/50 text-xs sm:text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
             />
             {searchQuery && (
