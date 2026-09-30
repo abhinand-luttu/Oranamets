@@ -5,7 +5,6 @@ import { fetchCategories, fetchOrnaments } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
 import CategoryCard from '../components/CategoryCard';
-import BridalNecklaceShowcase from '../components/BridalNecklaceShowcase';
 import useScrollReveal from '../hooks/useScrollReveal';
 import modernHeroImg from '../assets/modern-necklace-hero.jpg';
 
@@ -24,7 +23,13 @@ export default function HomePage() {
           fetchOrnaments({ featured: true }),
         ]);
         setCategories(cats || []);
-        setFeaturedOrnaments(orns || []);
+        if (orns && orns.length > 0) {
+          setFeaturedOrnaments(orns);
+        } else {
+          // If no featured ornaments found, fallback to loading all available ornaments
+          const allOrns = await fetchOrnaments();
+          setFeaturedOrnaments(allOrns || []);
+        }
       } catch (err) {
         console.error("Error loading home page data:", err);
       } finally {
@@ -111,13 +116,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Hero Visual - Modern Model Wearing Statement Emerald Necklace */}
+            {/* Right Hero Visual - Modern Model Wearing Royal Gold & Kundan Statement Necklace */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md aspect-[4/3] sm:aspect-square rounded-3xl p-2.5 bg-gradient-to-tr from-gold/50 via-gold/20 to-transparent border-2 border-gold shadow-2xl overflow-hidden group">
                 <div className="w-full h-full rounded-2xl overflow-hidden bg-brown-dark relative">
                   <img
                     src={modernHeroImg}
-                    alt="Modern fashion model wearing a statement emerald and gold necklace"
+                    alt="Modern fashion model wearing an exquisite royal yellow gold and kundan statement necklace"
                     className="w-full h-full object-cover object-[50%_35%] select-none group-hover:scale-105 transition-transform duration-700"
                     loading="eager"
                   />
@@ -132,7 +137,7 @@ export default function HomePage() {
 
                   {/* Sparkle highlights on necklace */}
                   <div className="absolute top-[65%] left-[50%] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 flex items-center justify-center animate-jewel-sparkle-1">
-                    <Sparkles className="w-6 h-6 text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                    <Sparkles className="w-6 h-6 text-amber-200 drop-shadow-[0_0_8px_rgba(245,158,11,0.9)]" />
                   </div>
                 </div>
 
@@ -143,7 +148,7 @@ export default function HomePage() {
                       <Gem className="w-4 h-4" />
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-brown font-royal">The Empress Emerald Necklace</p>
+                      <p className="text-xs font-bold text-brown font-royal">Royal Gold & Kundan Necklace</p>
                       <p className="text-[10px] text-brown/65">Shipped Directly from Gujarat</p>
                     </div>
                   </div>
@@ -273,13 +278,21 @@ export default function HomePage() {
               <div key={n} className="h-96 rounded-2xl bg-cream-200/50 animate-pulse border border-gold/20" />
             ))}
           </div>
-        ) : (
+        ) : featuredOrnaments.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredOrnaments.slice(0, 8).map((orn, idx) => (
               <div key={orn.id} className={`reveal-on-scroll stagger-${(idx % 8) + 1}`}>
                 <OrnamentCard ornament={orn} />
               </div>
             ))}
+          </div>
+        ) : (
+          <div className="bg-white/80 p-8 rounded-2xl border border-gold/40 text-center max-w-lg mx-auto space-y-3">
+            <Gem className="w-8 h-8 text-gold mx-auto" />
+            <p className="font-royal text-base font-bold text-brown">Exclusive Gujarat Ornaments Catalogue</p>
+            <p className="text-xs text-brown/70 leading-relaxed">
+              New handcrafted Gujarat ornaments are being added. Browse the collection or contact us directly on WhatsApp.
+            </p>
           </div>
         )}
 
@@ -293,11 +306,6 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-
-      {/* ===================================================================
-          5. STATEMENT NECKLACE SHOWCASE SECTION (FULL SCREEN WIDTH)
-          =================================================================== */}
-      <BridalNecklaceShowcase />
 
       {/* ===================================================================
           6. TRANSPARENT BUSINESS POSITIONING

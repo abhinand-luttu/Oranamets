@@ -30,15 +30,15 @@ export default function useScrollReveal(dependencies = []) {
       },
       {
         root: null,
-        rootMargin: '250px 0px 250px 0px', // Pre-trigger 250px before entering viewport for seamless UX
-        threshold: 0.01,
+        rootMargin: '1200px 0px 1200px 0px', // Pre-trigger generously before entering viewport for seamless UX
+        threshold: 0.001,
       }
     );
 
     elements.forEach((el) => {
-      // If already in viewport on initial mount, mark visible immediately
+      // If in or near viewport on initial mount, mark visible immediately
       const rect = el.getBoundingClientRect();
-      if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) + 150) {
+      if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) + 800) {
         el.classList.add('is-visible');
       } else {
         observer.observe(el);

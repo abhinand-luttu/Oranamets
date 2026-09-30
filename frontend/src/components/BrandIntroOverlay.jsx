@@ -67,7 +67,7 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <img
           src={imageSrc}
-          alt="Modern Luxury Jewellery Campaign - Statement Emerald & Gold Necklace"
+          alt="Modern Luxury Jewellery Campaign - Royal Gold & Kundan Statement Necklace"
           onLoad={() => setImageLoaded(true)}
           className={`w-full h-full object-cover object-[50%_35%] animate-intro-zoom ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -81,13 +81,13 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
 
           {/* Jewellery Sparkle Highlights over the necklace */}
           <div className="absolute top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
-            <svg className="w-6 h-6 text-emerald-300" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-6 h-6 text-amber-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
           <div className="absolute top-[59%] left-[45%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-2">
-            <svg className="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-5 h-5 text-gold-light" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
