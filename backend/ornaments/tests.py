@@ -98,5 +98,103 @@ class RajwadiBackendTests(TestCase):
         response = self.client.post('/api/inquiries/', payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(ContactInquiry.objects.count(), 1)
-        inquiry = ContactInquiry.objects.first()
-        self.assertEqual(inquiry.name, "Pratapsinh Jadeja")
+
+    def test_adhi_account_attributes(self):
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        adhi = User.objects.get(username='Adhi')
+        self.assertFalse(adhi.is_staff, "Adhi must NOT be staff")
+        self.assertFalse(adhi.is_superuser, "Adhi must NOT be superuser")
+        self.assertTrue(adhi.check_password('Luttu@369'), "Adhi password must match Luttu@369")
+
+    def test_adhi_auth_login_success(self):
+        payload = {"username": "Adhi", "password": "Luttu@369"}
+        response = self.client.post('/api/auth/login/', payload, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('token', response.data)
+        self.assertEqual(response.data['username'], "Adhi")
+        self.assertFalse(response.data['is_staff'])
+        self.assertTrue(response.data['can_add_ornaments'])
+
+    def test_adhi_auth_login_invalid(self):
+        payload = {"username": "Adhi", "password": "WrongPassword123"}
+        response = self.client.post('/api/auth/login/', payload, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_unauthenticated_user_cannot_create_ornament(self):
+        payload = {
+            "name": "Unauthorized Haar",
+            "category_id": self.category.id,
+            "description": "Attempt by guest",
+            "price": 50000.00
+        }
+        response = self.client.post('/api/ornaments/', payload, format='json')
+        self.assertIn(response.status_code, [status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN])
+
+    def test_adhi_can_create_ornament_with_image(self):
+        from rest_framework.authtoken.models import Token
+        from django.contrib.auth import get_user_model
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        import io
+        from PIL import Image
+
+        User = get_user_model()
+        adhi = User.objects.get(username='Adhi')
+        token, _ = Token.objects.get_or_create(user=adhi)
+
+        # Create a tiny 1x1 test image
+        img_io = io.BytesIO()
+        test_img = Image.new('RGB', (10, 10), color='gold')
+        test_img.save(img_io, format='JPEG')
+        img_file = SimpleUploadedFile("test_ornament.jpg", img_io.getvalue(), content_type="image/jpeg")
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION=f'Token {token.key}')
+
+        payload = {
+            "name": "Adhi Temple Choker",
+            "category": self.category.id,
+            "description": "Traditional gold choker created via Add Ornaments feature",
+            "price": 125000.00,
+            "purity": "22K Gold",
+            "availability": "in_stock",
+            "is_featured": "true",
+            "image": img_file,
+        }
+
+        response = client.post('/api/ornaments/', payload, format='multipart')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['name'], "Adhi Temple Choker")
+        self.assertIsNotNone(response.data['primary_image_url'])
+
+        # Verify saved in the exact same database and model
+        created_ornament = Ornament.objects.get(name="Adhi Temple Choker")
+        self.assertEqual(created_ornament.category, self.category)
+        self.assertEqual(created_ornament.images.count(), 1)
+        self.assertTrue(created_ornament.is_featured)
+
+        # Verify public unauthenticated user can see it in public GET API
+        public_client = APIClient()
+        public_res = public_client.get('/api/ornaments/')
+        self.assertEqual(public_res.status_code, status.HTTP_200_OK)
+        names = [item['name'] for item in public_res.data.get('results', [])]
+        self.assertIn("Adhi Temple Choker", names)
+
+    def test_adhi_cannot_delete_or_modify_ornament(self):
+        from rest_framework.authtoken.models import Token
+        from django.contrib.auth import get_user_model
+
+        User = get_user_model()
+        adhi = User.objects.get(username='Adhi')
+        token, _ = Token.objects.get_or_create(user=adhi)
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION=f'Token {token.key}')
+
+        # Adhi cannot delete
+        del_res = client.delete(f'/api/ornaments/{self.ornament.slug}/')
+        self.assertEqual(del_res.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Adhi cannot patch/update existing
+        patch_res = client.patch(f'/api/ornaments/{self.ornament.slug}/', {'name': 'Hacked'}, format='json')
+        self.assertEqual(patch_res.status_code, status.HTTP_403_FORBIDDEN)

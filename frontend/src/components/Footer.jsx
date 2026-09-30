@@ -128,6 +128,10 @@ export default function Footer() {
           <div className="flex items-center space-x-4">
             <Link to="/contact" className="hover:text-gold transition-colors">Contact Us</Link>
             <span>•</span>
+            <Link to="/add-ornaments" className="hover:text-gold transition-colors flex items-center gap-1 text-gold-light">
+              <span>🔒 Add Ornaments</span>
+            </Link>
+            <span>•</span>
             <a
               href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"

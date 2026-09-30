@@ -51,6 +51,14 @@ export default function Navbar() {
               <MessageCircle className="w-3 h-3" />
               <span>WhatsApp Direct</span>
             </a>
+            <Link
+              to="/add-ornaments"
+              className="hover:text-gold transition-colors flex items-center gap-1 text-gold-light/90 hover:text-gold font-medium"
+              title="Add Ornaments Portal"
+            >
+              <Lock className="w-3 h-3 text-gold" />
+              <span>Add Ornaments</span>
+            </Link>
             <a
               href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"
@@ -164,6 +172,14 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
+            <Link
+              to="/add-ornaments"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="px-3 py-2.5 rounded-lg text-sm font-semibold text-maroon hover:bg-cream-200/50 flex items-center gap-2 border border-gold/30 bg-gold/5"
+            >
+              <Lock className="w-4 h-4 text-gold-dark" />
+              <span>🔒 Add Ornaments</span>
+            </Link>
             <a
               href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"

@@ -90,11 +90,23 @@ class OrnamentListSerializer(serializers.ModelSerializer):
 class OrnamentDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     category_id = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(), source='category', write_only=True
+        queryset=Category.objects.all(), source='category', write_only=True, required=False
     )
     images = OrnamentImageSerializer(many=True, read_only=True)
     primary_image_url = serializers.SerializerMethodField()
     all_image_urls = serializers.SerializerMethodField()
+
+    def to_internal_value(self, data):
+        data_copy = data.copy() if hasattr(data, 'copy') else dict(data)
+        if 'category' in data_copy and 'category_id' not in data_copy:
+            data_copy['category_id'] = data_copy['category']
+        if data_copy.get('price') == '' or data_copy.get('price') is None:
+            data_copy['price'] = None
+        if 'is_price_on_request' in data_copy:
+            data_copy['is_price_on_request'] = str(data_copy['is_price_on_request']).lower() in ['true', '1']
+        if 'is_featured' in data_copy:
+            data_copy['is_featured'] = str(data_copy['is_featured']).lower() in ['true', '1']
+        return super().to_internal_value(data_copy)
 
     class Meta:
         model = Ornament

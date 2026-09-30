@@ -165,4 +165,71 @@ export async function submitContactInquiry(payload) {
   return { status: "received", message: "Inquiry received" };
 }
 
+/**
+ * Dedicated login for staff / Adhi creator portal.
+ * Returns { token, username, is_staff, can_add_ornaments }.
+ */
+export async function apiLogin(username, password) {
+  const res = await fetch(`${API_BASE_URL}/api/auth/login/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({ username, password }),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.detail || 'Authentication failed. Please check your credentials.');
+  }
+  return data;
+}
+
+/**
+ * Verifies current token validity.
+ */
+export async function verifyAuthToken(token) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/auth/me/`, {
+      headers: {
+        'Authorization': `Token ${token}`,
+        'Accept': 'application/json',
+      },
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (err) {
+    console.warn("Token verification error:", err);
+  }
+  return null;
+}
+
+/**
+ * Creates an ornament in the existing database with image upload.
+ * Strictly requires Authorization Token.
+ */
+export async function createOrnament(formData, token) {
+  const res = await fetch(`${API_BASE_URL}/api/ornaments/`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Token ${token}`,
+      'Accept': 'application/json',
+    },
+    body: formData,
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    let errorMsg = 'Failed to create ornament.';
+    if (data.detail) {
+      errorMsg = data.detail;
+    } else if (typeof data === 'object') {
+      const messages = Object.entries(data).map(([field, errs]) => `${field}: ${Array.isArray(errs) ? errs.join(', ') : errs}`);
+      errorMsg = messages.join(' | ');
+    }
+    throw new Error(errorMsg);
+  }
+  return normalizeOrnament(data);
+}
+
 export { API_BASE_URL };

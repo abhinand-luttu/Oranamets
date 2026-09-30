@@ -1,4 +1,5 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, permissions, filters, status
+from rest_framework.response import Response
 from django.db.models import Q
 from .models import Category, Ornament, OrnamentImage
 from .serializers import (
@@ -12,7 +13,28 @@ class IsAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return request.user and request.user.is_staff
+        return bool(request.user and request.user.is_authenticated and request.user.is_staff)
+
+
+class CanAddOrnamentsOrReadOnly(permissions.BasePermission):
+    """
+    - SAFE_METHODS (GET, HEAD, OPTIONS): Publicly available to everyone without authentication.
+    - POST: Requires authenticated staff OR the designated 'Adhi' creator account (or add_ornament perm).
+    - PUT, PATCH, DELETE: Strictly restricted to staff members. Adhi cannot edit or delete existing ornaments.
+    """
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        if not request.user or not request.user.is_authenticated:
+            return False
+        if request.method == 'POST':
+            return bool(
+                request.user.is_staff or 
+                request.user.username == 'Adhi' or 
+                request.user.has_perm('ornaments.add_ornament')
+            )
+        # Edit/Delete strictly restricted to staff/superusers
+        return bool(request.user.is_staff)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -40,7 +62,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class OrnamentViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [CanAddOrnamentsOrReadOnly]
     lookup_field = 'slug'
 
     def get_serializer_class(self):
@@ -57,6 +79,36 @@ class OrnamentViewSet(viewsets.ModelViewSet):
                 self.check_object_permissions(self.request, obj)
                 return obj
         return super().get_object()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        ornament = serializer.save()
+
+        # Handle uploaded primary image (from multipart FormData: 'image')
+        image_file = request.FILES.get('image')
+        if image_file:
+            OrnamentImage.objects.create(
+                ornament=ornament,
+                image=image_file,
+                is_primary=True,
+                alt_text=f"{ornament.name} Primary Image"
+            )
+
+        # Handle any extra uploaded images ('images')
+        for extra_file in request.FILES.getlist('images'):
+            if extra_file != image_file:
+                OrnamentImage.objects.create(
+                    ornament=ornament,
+                    image=extra_file,
+                    is_primary=False,
+                    alt_text=f"{ornament.name} Image"
+                )
+
+        instance = Ornament.objects.prefetch_related('images').select_related('category').get(pk=ornament.pk)
+        output_serializer = OrnamentDetailSerializer(instance, context={'request': request})
+        headers = self.get_success_headers(output_serializer.data)
+        return Response(output_serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def get_queryset(self):
         queryset = Ornament.objects.select_related('category').prefetch_related('images').all()

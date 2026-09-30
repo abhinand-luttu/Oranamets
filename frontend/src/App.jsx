@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import CollectionPage from './pages/CollectionPage';
 import OrnamentDetailPage from './pages/OrnamentDetailPage';
 import ContactPage from './pages/ContactPage';
+import AddOrnamentsPage from './pages/AddOrnamentsPage';
 import BrandIntroOverlay from './components/BrandIntroOverlay';
 
 function ScrollToTop() {
@@ -41,6 +42,7 @@ export default function App() {
               <Route path="/collection" element={<CollectionPage />} />
               <Route path="/ornaments/:slug" element={<OrnamentDetailPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/add-ornaments" element={<AddOrnamentsPage />} />
               {/* Fallback route */}
               <Route path="*" element={<HomePage />} />
             </Routes>
