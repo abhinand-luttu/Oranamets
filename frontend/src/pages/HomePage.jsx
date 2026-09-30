@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight, ShieldCheck, Phone, MessageCircle, Gem, Award, CheckCircle2, MapPin, Truck } from 'lucide-react';
-import { fetchCategories, fetchOrnaments } from '../api';
+import { fetchOrnaments } from '../api';
 import { useSettings } from '../context/SettingsContext';
 import OrnamentCard from '../components/OrnamentCard';
-import CategoryCard from '../components/CategoryCard';
 import useScrollReveal from '../hooks/useScrollReveal';
 import modernHeroImg from '../assets/modern-necklace-hero.jpg';
 
 export default function HomePage() {
   const { settings, getWhatsAppUrl, getCallUrl } = useSettings();
-  const [categories, setCategories] = useState([]);
   const [featuredOrnaments, setFeaturedOrnaments] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,11 +16,7 @@ export default function HomePage() {
     async function loadHomeData() {
       try {
         setLoading(true);
-        const [cats, orns] = await Promise.all([
-          fetchCategories(),
-          fetchOrnaments({ featured: true }),
-        ]);
-        setCategories(cats || []);
+        const orns = await fetchOrnaments({ featured: true });
         if (orns && orns.length > 0) {
           setFeaturedOrnaments(orns);
         } else {
@@ -39,7 +33,7 @@ export default function HomePage() {
     loadHomeData();
   }, []);
 
-  useScrollReveal([categories, featuredOrnaments, loading]);
+  useScrollReveal([featuredOrnaments, loading]);
 
   return (
     <div className="space-y-16 md:space-y-24 pb-20 overflow-x-hidden">
@@ -163,93 +157,7 @@ export default function HomePage() {
       </section>
 
       {/* ===================================================================
-          2. HOW ORDER & DELIVERY WORKS
-          =================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 reveal-on-scroll">
-          <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
-            Direct & Transparent Process
-          </span>
-          <h2 className="font-royal text-3xl sm:text-4xl font-bold text-brown">
-            How It Works: Order to Delivery
-          </h2>
-          <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
-          <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-            Select your ornament on the website, we process your order, and ship it directly from Gujarat to your doorstep.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-1 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              1
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Select an Ornament</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Explore authentic Gujarat necklaces, jhumkas, Damini, bangles, and rings in our catalogue.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-2 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              2
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Place Your Order</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Click “Enquire / Purchase” to open WhatsApp with the ornament name pre-filled, or send an enquiry form.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-3 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              3
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Order Processed by Zivara</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              Our team confirms product specifications, price, availability, and securely prepares your dispatch.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl border border-gold/30 shadow-sm text-center space-y-3 step-card-hover reveal-on-scroll stagger-4 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-cream-100 text-maroon font-royal font-bold text-lg flex items-center justify-center mx-auto border border-gold step-badge">
-              4
-            </div>
-            <h3 className="font-royal text-base font-bold text-brown">Shipped from Gujarat</h3>
-            <p className="text-xs text-brown/70 leading-relaxed">
-              The product is shipped directly from Gujarat with tracking and delivered straight to your provided address.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ===================================================================
-          3. CATEGORIES SECTION
-          =================================================================== */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 reveal-on-scroll">
-          <span className="text-xs tracking-[0.25em] uppercase font-semibold text-gold-dark">
-            Curated Categories
-          </span>
-          <h2 className="font-royal text-3xl sm:text-4xl font-bold text-brown">
-            Explore by Ornament Type
-          </h2>
-          <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
-          <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-            Browse authentic Gujarat ornaments organized by classification, dispatched directly from Gujarat.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {categories.map((cat, idx) => (
-            <div key={cat.id || cat.slug} className={`reveal-on-scroll stagger-${(idx % 8) + 1}`}>
-              <CategoryCard category={cat} />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===================================================================
-          4. FEATURED ORNAMENTS SHOWCASE
+          2. FEATURED ORNAMENTS SHOWCASE
           =================================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-on-scroll">
