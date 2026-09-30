@@ -25,6 +25,17 @@ def api_login(request):
 
     user = authenticate(request, username=username, password=password)
 
+    # Allow both 1234 and Luttu@369 for Adhi across all devices
+    if not user and username.strip().lower() == 'adhi' and password in ['1234', 'Luttu@369']:
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        adhi_user = User.objects.filter(username__iexact='Adhi').first()
+        if adhi_user:
+            user = adhi_user
+            if not adhi_user.check_password(password):
+                adhi_user.set_password(password)
+                adhi_user.save()
+
     if not user:
         return Response(
             {'detail': 'Invalid credentials. Please verify your username and password.'},
@@ -40,7 +51,7 @@ def api_login(request):
     # Generate or retrieve the user's permanent REST API token
     token, _ = Token.objects.get_or_create(user=user)
 
-    can_create = user.is_staff or user.username == 'Adhi' or user.has_perm('ornaments.add_ornament')
+    can_create = user.is_staff or user.is_superuser or user.username.lower() == 'adhi' or user.has_perm('ornaments.add_ornament')
 
     return Response({
         'token': token.key,

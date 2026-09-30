@@ -4,14 +4,14 @@ from rest_framework.authtoken.models import Token
 
 
 class Command(BaseCommand):
-    help = "Setup or reset dedicated non-staff Adhi creator account"
+    help = "Setup or reset dedicated Adhi creator and admin account"
 
     def handle(self, *args, **options):
         User = get_user_model()
         user, created = User.objects.get_or_create(username='Adhi')
-        user.set_password('Luttu@369')
-        user.is_staff = False
-        user.is_superuser = False
+        user.set_password('1234')
+        user.is_staff = True
+        user.is_superuser = True
         user.is_active = True
         user.save()
 

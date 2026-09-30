@@ -25,6 +25,22 @@ if (fs.existsSync(srcDist)) {
   }
   fs.cpSync(srcDist, destDist, { recursive: true });
   console.log('--- Successfully copied frontend/dist to root dist/ ---');
+
+  // SPA direct route fallbacks: ensure /add-ornaments, /collection, /contact never 404 on static hosts
+  const indexPath = path.join(destDist, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    const staticRoutes = ['add-ornaments', 'collection', 'contact'];
+    for (const r of staticRoutes) {
+      const routeDir = path.join(destDist, r);
+      if (!fs.existsSync(routeDir)) {
+        fs.mkdirSync(routeDir, { recursive: true });
+      }
+      fs.copyFileSync(indexPath, path.join(routeDir, 'index.html'));
+    }
+    // Also create 404.html fallback
+    fs.copyFileSync(indexPath, path.join(destDist, '404.html'));
+    console.log('--- Created static route index fallbacks (add-ornaments, collection, contact, 404.html) ---');
+  }
 }
 
 console.log('--- Root Build Completed Successfully ---');

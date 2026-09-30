@@ -12,6 +12,9 @@ python manage.py collectstatic --no-input
 echo "--- Running Database Migrations ---"
 python manage.py migrate
 
+echo "--- Configuring Adhi Creator & Admin Account ---"
+python manage.py setup_creator_account
+
 echo "--- Seeding Database with Zivara Categories & Ornaments ---"
 python manage.py seed_data
 

@@ -174,7 +174,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/add-ornaments"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2.5 rounded-lg text-sm font-semibold text-maroon hover:bg-cream-200/50 flex items-center gap-2 border border-gold/30 bg-gold/5"
             >
               <Lock className="w-4 h-4 text-gold-dark" />

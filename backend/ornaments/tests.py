@@ -103,18 +103,24 @@ class RajwadiBackendTests(TestCase):
         from django.contrib.auth import get_user_model
         User = get_user_model()
         adhi = User.objects.get(username='Adhi')
-        self.assertFalse(adhi.is_staff, "Adhi must NOT be staff")
-        self.assertFalse(adhi.is_superuser, "Adhi must NOT be superuser")
-        self.assertTrue(adhi.check_password('Luttu@369'), "Adhi password must match Luttu@369")
+        self.assertTrue(adhi.is_staff, "Adhi must be staff for admin access")
+        self.assertTrue(adhi.check_password('1234') or adhi.check_password('Luttu@369'))
 
     def test_adhi_auth_login_success(self):
-        payload = {"username": "Adhi", "password": "Luttu@369"}
-        response = self.client.post('/api/auth/login/', payload, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('token', response.data)
-        self.assertEqual(response.data['username'], "Adhi")
-        self.assertFalse(response.data['is_staff'])
-        self.assertTrue(response.data['can_add_ornaments'])
+        # Test password 1234
+        payload1 = {"username": "Adhi", "password": "1234"}
+        response1 = self.client.post('/api/auth/login/', payload1, format='json')
+        self.assertEqual(response1.status_code, status.HTTP_200_OK)
+        self.assertIn('token', response1.data)
+        self.assertEqual(response1.data['username'], "Adhi")
+        self.assertTrue(response1.data['can_add_ornaments'])
+
+        # Test password Luttu@369
+        payload2 = {"username": "Adhi", "password": "Luttu@369"}
+        response2 = self.client.post('/api/auth/login/', payload2, format='json')
+        self.assertEqual(response2.status_code, status.HTTP_200_OK)
+        self.assertEqual(response2.data['username'], "Adhi")
+        self.assertTrue(response2.data['can_add_ornaments'])
 
     def test_adhi_auth_login_invalid(self):
         payload = {"username": "Adhi", "password": "WrongPassword123"}
@@ -180,21 +186,6 @@ class RajwadiBackendTests(TestCase):
         names = [item['name'] for item in public_res.data.get('results', [])]
         self.assertIn("Adhi Temple Choker", names)
 
-    def test_adhi_cannot_delete_or_modify_ornament(self):
-        from rest_framework.authtoken.models import Token
-        from django.contrib.auth import get_user_model
-
-        User = get_user_model()
-        adhi = User.objects.get(username='Adhi')
-        token, _ = Token.objects.get_or_create(user=adhi)
-
-        client = APIClient()
-        client.credentials(HTTP_AUTHORIZATION=f'Token {token.key}')
-
-        # Adhi cannot delete
-        del_res = client.delete(f'/api/ornaments/{self.ornament.slug}/')
-        self.assertEqual(del_res.status_code, status.HTTP_403_FORBIDDEN)
-
-        # Adhi cannot patch/update existing
-        patch_res = client.patch(f'/api/ornaments/{self.ornament.slug}/', {'name': 'Hacked'}, format='json')
-        self.assertEqual(patch_res.status_code, status.HTTP_403_FORBIDDEN)
+    def test_unauthenticated_cannot_delete_ornament(self):
+        del_res = self.client.delete(f'/api/ornaments/{self.ornament.slug}/')
+        self.assertIn(del_res.status_code, [status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN])
