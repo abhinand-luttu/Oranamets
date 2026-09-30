@@ -163,7 +163,7 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
 
           {/* Subtitle */}
           <p className="font-royal text-xs sm:text-sm tracking-[0.3em] uppercase text-gold-light font-medium drop-shadow">
-            Gujarat Traditional Ornaments • Bridal Collection
+            Gujarat Bridal Ornaments • Bridal Collection
           </p>
 
           <p className="text-[11px] text-cream-200/80 tracking-widest uppercase">

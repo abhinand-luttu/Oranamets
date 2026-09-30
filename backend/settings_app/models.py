@@ -2,7 +2,7 @@ from django.db import models
 
 class BusinessSettings(models.Model):
     store_name = models.CharField(max_length=150, default="Zivara")
-    tagline = models.CharField(max_length=250, default="Gujarat Traditional Ornaments • Shipped Directly from Gujarat")
+    tagline = models.CharField(max_length=250, default="Gujarat Bridal Ornaments • Shipped Directly from Gujarat")
     whatsapp_number = models.CharField(max_length=20, default="+918848242986", help_text="WhatsApp phone number, e.g. +91 8848242986")
     phone_number = models.CharField(max_length=20, default="+918848242986", help_text="Contact number for direct voice calls")
     email = models.EmailField(default="contact@zivaraornaments.com")
@@ -10,7 +10,7 @@ class BusinessSettings(models.Model):
     city = models.CharField(max_length=100, default="Gujarat, India")
     business_hours = models.CharField(max_length=200, default="Monday – Saturday: 9:30 AM – 7:30 PM | Available on WhatsApp & Call")
     about_summary = models.TextField(
-        default="Zivara brings authentic Gujarat traditional ornaments directly to your doorstep. "
+        default="Zivara brings authentic Gujarat bridal ornaments directly to your doorstep. "
                 "When you select an ornament, your order is processed by Zivara and shipped directly from Gujarat to your address. "
                 "From intricate Jadau and Kundan pieces to timeless Kathiyawadi necklaces, bridal sets, and bangles, "
                 "we deliver authentic Gujarat heritage jewellery with guaranteed doorstep delivery."

@@ -27,7 +27,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-2">
             <span className="inline-block w-2 h-2 rounded-full bg-gold animate-pulse"></span>
             <span className="tracking-wider uppercase font-medium text-[11px]">
-              Traditional Gujarat Ornaments • Shipped Directly from Gujarat
+              Gujarat Bridal Ornaments • Shipped Directly from Gujarat
             </span>
           </div>
           <div className="hidden sm:flex items-center space-x-6 text-[11px] font-medium tracking-wider">
@@ -78,7 +78,7 @@ export default function Navbar() {
                 ZIVARA
               </span>
               <span className="text-[9.5px] tracking-[0.25em] uppercase text-gold font-semibold -mt-1">
-                GUJARAT TRADITIONAL ORNAMENTS
+                GUJARAT BRIDAL ORNAMENTS
               </span>
             </div>
           </Link>

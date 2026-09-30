@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-xs text-cream-200/90 leading-relaxed font-medium">
-              Gujarat Traditional Ornaments • Shipped Directly from Gujarat.
+              Gujarat Bridal Ornaments • Shipped Directly from Gujarat.
             </p>
             <p className="text-xs text-cream-300/70 leading-relaxed">
               Customers select an ornament on our website, orders are processed by Zivara, and products are shipped directly from Gujarat to your provided address.
@@ -124,7 +124,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-cream-300/60 gap-4">
-          <p>© {new Date().getFullYear()} Zivara. Authentic Gujarat Traditional Ornaments • Direct Doorstep Delivery.</p>
+          <p>© {new Date().getFullYear()} Zivara. Authentic Gujarat Bridal Ornaments • Direct Doorstep Delivery.</p>
           <div className="flex items-center space-x-4">
             <Link to="/contact" className="hover:text-gold transition-colors">Contact Us</Link>
             <span>•</span>

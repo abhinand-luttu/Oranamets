@@ -49,17 +49,17 @@ export default function HomePage() {
               {/* Badge: Origin vs Location */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream-50/10 border border-gold/40 text-gold-light text-xs font-semibold tracking-widest uppercase">
                 <Sparkles className="w-3.5 h-3.5 text-gold" />
-                <span>Gujarat Traditional Ornaments • Direct Doorstep Delivery</span>
+                <span>Gujarat Bridal Ornaments • Direct Doorstep Delivery</span>
               </div>
 
               {/* Main Headline */}
               <h1 className="font-royal text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cream-50 leading-[1.15]">
-                Traditional Gujarat Ornaments, <span className="text-gold-gradient">Delivered to Your Doorstep</span>
+                Gujarat Bridal Ornaments, <span className="text-gold-gradient">Delivered to Your Doorstep</span>
               </h1>
 
               {/* Subheading */}
               <p className="text-sm sm:text-base text-cream-200/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Authentic Gujarat traditional ornaments. Customers place orders on the website,
+                Authentic Gujarat bridal ornaments. Customers place orders on the website,
                 orders are processed by Zivara, and products are shipped directly from Gujarat to your provided address.
               </p>
 
@@ -121,7 +121,7 @@ export default function HomePage() {
                       ZIVARA ORNAMENTS
                     </span>
                     <p className="text-xs text-cream-200/80 mb-6 max-w-xs leading-relaxed">
-                      Authentic Gujarat traditional ornaments, ordered online and shipped directly from Gujarat to your address.
+                      Authentic Gujarat bridal ornaments, ordered online and shipped directly from Gujarat to your address.
                     </p>
                     <Link
                       to="/collection"
@@ -173,7 +173,7 @@ export default function HomePage() {
             </div>
             <h3 className="font-royal text-base font-bold text-brown">Select an Ornament</h3>
             <p className="text-xs text-brown/70 leading-relaxed">
-              Explore authentic Gujarat traditional necklaces, jhumkas, bridal Damini, bangles, and rings in our catalogue.
+              Explore authentic Gujarat bridal necklaces, jhumkas, bridal Damini, bangles, and rings in our catalogue.
             </p>
           </div>
 
@@ -220,7 +220,7 @@ export default function HomePage() {
           </h2>
           <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
           <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-            Browse authentic Gujarat traditional ornaments organized by classification, dispatched directly from Gujarat.
+            Browse authentic Gujarat bridal ornaments organized by classification, dispatched directly from Gujarat.
           </p>
         </div>
 

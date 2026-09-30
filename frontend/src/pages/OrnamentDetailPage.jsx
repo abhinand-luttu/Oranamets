@@ -62,7 +62,7 @@ export default function OrnamentDetailPage() {
       try {
         await navigator.share({
           title: `${ornament.name} | Zivara`,
-          text: `Check out ${ornament.name} (Gujarat Traditional Ornaments • Shipped from Gujarat):`,
+          text: `Check out ${ornament.name} (Gujarat Bridal Ornaments • Shipped from Gujarat):`,
           url: window.location.href,
         });
       } catch (e) {
@@ -221,7 +221,7 @@ export default function OrnamentDetailPage() {
             {/* Category badge */}
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold tracking-widest uppercase text-gold-dark">
-                {ornament.category?.name || 'Gujarat Traditional Style'}
+                {ornament.category?.name || 'Gujarat Bridal Style'}
               </span>
               {ornament.is_featured && (
                 <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-maroon bg-maroon/5 px-2.5 py-0.5 rounded-full border border-gold/40">
@@ -269,7 +269,7 @@ export default function OrnamentDetailPage() {
           <div className="border-t border-b border-cream-200 py-4 grid grid-cols-2 gap-4 text-xs">
             <div>
               <span className="text-brown/50 block mb-0.5">Style Origin</span>
-              <span className="font-semibold text-brown">Gujarat Traditional</span>
+              <span className="font-semibold text-brown">Gujarat Bridal Style</span>
             </div>
             <div>
               <span className="text-brown/50 block mb-0.5">Purity & Finish</span>

@@ -6,14 +6,14 @@ const SettingsContext = createContext(null);
 export function SettingsProvider({ children }) {
   const [settings, setSettings] = useState({
     store_name: "Zivara",
-    tagline: "Authentic Gujarat Traditional Ornaments • Shipped Directly from Gujarat",
+    tagline: "Authentic Gujarat Bridal Ornaments • Shipped Directly from Gujarat",
     whatsapp_number: "+918848242986",
     phone_number: "+918848242986",
     email: "contact@zivaraornaments.com",
     address: "Shipped Directly from Gujarat",
     city: "All India Delivery",
     business_hours: "Monday – Saturday: 9:30 AM – 7:30 PM | Available on WhatsApp & Call",
-    about_summary: "Authentic Gujarat traditional ornaments. Customers place an order on the website, our company processes the request, and products are shipped directly from Gujarat to your provided address across India.",
+    about_summary: "Authentic Gujarat bridal ornaments. Customers place an order on the website, our company processes the request, and products are shipped directly from Gujarat to your provided address across India.",
     instagram_url: "https://instagram.com",
     facebook_url: "https://facebook.com",
   });

@@ -135,14 +135,14 @@ export async function fetchBusinessSettings() {
     console.warn('Using default business settings:', err);
     return {
       store_name: "Zivara",
-      tagline: "Authentic Gujarat Traditional Ornaments • Shipped Directly from Gujarat",
+      tagline: "Authentic Gujarat Bridal Ornaments • Shipped Directly from Gujarat",
       whatsapp_number: "+918848242986",
       phone_number: "+918848242986",
       email: "contact@zivaraornaments.com",
       address: "Direct Dispatch from Gujarat",
       city: "All India Delivery",
       business_hours: "Monday – Saturday: 9:30 AM – 7:30 PM | Available on WhatsApp & Call",
-      about_summary: "Zivara showcases authentic Gujarat traditional ornaments. Customers place orders on the website, orders are processed by our team, and products are shipped directly from Gujarat to your address.",
+      about_summary: "Zivara showcases authentic Gujarat bridal ornaments. Customers place orders on the website, orders are processed by our team, and products are shipped directly from Gujarat to your address.",
     };
   }
 }

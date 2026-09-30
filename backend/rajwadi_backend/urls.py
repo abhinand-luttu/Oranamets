@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view
 def api_root(request):
     return Response({
         'status': 'online',
-        'store': 'Zivara - Gujarat Traditional Ornaments (Shipped Directly from Gujarat)',
+        'store': 'Zivara - Gujarat Bridal Ornaments (Shipped Directly from Gujarat)',
         'location': 'Direct Shipment from Gujarat to Customer Address',
         'endpoints': {
             'categories': request.build_absolute_uri('/api/categories/'),

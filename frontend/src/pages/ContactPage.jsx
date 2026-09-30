@@ -67,7 +67,7 @@ export default function ContactPage() {
         </h1>
         <div className="w-16 h-1 bg-gold mx-auto rounded-full" />
         <p className="text-xs sm:text-sm text-brown/70 leading-relaxed">
-          Authentic Gujarat traditional ornaments. Customers place an order on our website or WhatsApp, our company processes the request, and the ornament is shipped directly from Gujarat to your provided address.
+          Authentic Gujarat bridal ornaments. Customers place an order on our website or WhatsApp, our company processes the request, and the ornament is shipped directly from Gujarat to your provided address.
         </p>
       </div>
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
 
             <div className="space-y-2.5 text-xs text-brown/80 pt-2 border-t border-cream-200">
               <p className="leading-relaxed">
-                <strong>1. Select Ornament:</strong> Choose your Gujarat traditional ornament from our live catalogue.
+                <strong>1. Select Ornament:</strong> Choose your Gujarat bridal ornament from our live catalogue.
               </p>
               <p className="leading-relaxed text-brown/70">
                 <strong>2. Place Order:</strong> Enquire via WhatsApp or submit the enquiry form below.
