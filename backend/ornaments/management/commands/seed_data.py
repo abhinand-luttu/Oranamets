@@ -32,6 +32,16 @@ class Command(BaseCommand):
             admin_user.save()
             self.stdout.write(self.style.SUCCESS("[OK] Superuser password updated: admin / rajwadi@admin2026"))
 
+        # 1b. Superuser Adhi (Admin Portal Access)
+        adhi_user, _ = User.objects.get_or_create(username='Adhi')
+        adhi_user.set_password('1234')
+        adhi_user.email = 'adhi@zivaraornaments.com'
+        adhi_user.is_staff = True
+        adhi_user.is_superuser = True
+        adhi_user.is_active = True
+        adhi_user.save()
+        self.stdout.write(self.style.SUCCESS("[OK] Superuser Adhi created: Adhi / 1234"))
+
         # 2. Business Settings
         business_settings = BusinessSettings.get_settings()
         business_settings.store_name = "Zivara"
