@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { getAbsoluteImageUrl } from '../api';
 
 export default function CategoryCard({ category }) {
@@ -9,42 +9,40 @@ export default function CategoryCard({ category }) {
   return (
     <Link
       to={`/collection?category=${category.slug}`}
-      className="group relative bg-[#FAF8F5] rounded-2xl p-5 border border-gold/20 hover:border-gold/50 shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between overflow-hidden"
+      className="group relative card-luxury-hover bg-white rounded-2xl p-6 border border-gold/30 shadow-sm flex flex-col justify-between overflow-hidden transition-all duration-300"
     >
-      <div className="relative z-10 space-y-4">
-        {/* Category Thumbnail or Icon */}
-        <div className="w-14 h-14 rounded-2xl bg-white border border-gold/30 shadow-sm flex items-center justify-center overflow-hidden p-1 group-hover:scale-105 transition-transform duration-500">
+      {/* Subtle corner accent */}
+      <div className="absolute top-0 right-0 w-16 h-16 bg-cream-100 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 ease-out group-hover:scale-125" />
+
+      <div className="relative z-10">
+        <div className="w-12 h-12 rounded-xl bg-maroon/10 border border-gold/40 flex items-center justify-center text-maroon mb-4 group-hover:bg-maroon group-hover:text-gold transition-colors duration-300 overflow-hidden">
           {categoryImage ? (
             <img
               src={categoryImage}
               alt={category.name}
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500 ease-out"
             />
           ) : (
-            <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center">
-              <span className="w-2 h-2 rounded-full bg-gold" />
-            </div>
+            <Sparkles className="w-6 h-6" />
           )}
         </div>
 
-        <div>
-          <h3 className="font-serif text-lg font-medium text-[#181512] group-hover:text-gold-dark transition-colors mb-1">
-            {category.name}
-          </h3>
-          <p className="text-[11px] text-[#6E6760] font-light line-clamp-2 leading-relaxed">
-            {category.description || 'Iconic handcrafted designs for everyday refinement and grand occasions.'}
-          </p>
-        </div>
+        <h3 className="font-royal text-xl font-bold text-brown group-hover:text-maroon transition-colors mb-1.5">
+          {category.name}
+        </h3>
+
+        <p className="text-xs text-brown/70 leading-relaxed line-clamp-2 mb-4">
+          {category.description || 'Authentic handcrafted heritage jewellery from Gujarat & Rajasthan.'}
+        </p>
       </div>
 
-      <div className="relative z-10 pt-4 mt-3 border-t border-cream-200/60 flex items-center justify-between text-[11px]">
-        <span className="text-[#8C7A6B] tracking-wider uppercase font-medium">
-          {category.ornaments_count ? `${category.ornaments_count} Creations` : 'Curated Edit'}
+      <div className="relative z-10 pt-4 border-t border-cream-200 flex items-center justify-between text-xs">
+        <span className="text-gold-dark font-medium">
+          {category.ornaments_count ? `${category.ornaments_count} Designs` : 'View Collection'}
         </span>
-        <span className="text-[#181512] group-hover:text-gold-dark font-medium flex items-center gap-1 transition-colors">
-          <span>Discover</span>
-          <ArrowUpRight className="w-3.5 h-3.5 text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        <span className="text-maroon font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+          Explore <ArrowRight className="w-3.5 h-3.5" />
         </span>
       </div>
     </Link>

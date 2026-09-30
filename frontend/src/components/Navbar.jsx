@@ -20,46 +20,44 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gold/20 transition-all duration-300">
-      {/* Top Luxury Announcement Bar */}
-      <div className="bg-[#161412] text-cream-100 text-[11px] py-2 px-4 border-b border-gold/15">
+    <header className="sticky top-0 z-50 bg-cream-50/95 backdrop-blur-md border-b border-gold/20 shadow-sm transition-all duration-300">
+      {/* Top Royal Maroon Announcement Bar */}
+      <div className="bg-maroon text-cream-100 text-xs py-1.5 px-4 border-b border-gold/20">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
-            <span className="tracking-[0.2em] uppercase font-medium text-cream-200/90 text-[10px] sm:text-[11px]">
-              Modern Statement Necklaces & Fine Jewellery • Direct Atelier Delivery
+            <span className="inline-block w-2 h-2 rounded-full bg-gold animate-pulse" />
+            <span className="tracking-wider uppercase font-medium text-[10px] sm:text-[11px]">
+              Gujarat Ornaments • Direct Doorstep Delivery from Gujarat
             </span>
           </div>
 
-          <div className="hidden md:flex items-center space-x-6 text-[11px] font-medium tracking-wider">
-            <span className="flex items-center gap-1.5 text-cream-200/80">
+          <div className="hidden sm:flex items-center space-x-6 text-[11px] font-medium tracking-wider">
+            <span className="flex items-center gap-1 text-gold-light/90">
               <Truck className="w-3 h-3 text-gold" />
-              <span>Insured Doorstep Shipping</span>
+              <span>Doorstep Delivery to Your Address</span>
             </span>
 
             <a
               href={getCallUrl()}
-              className="text-cream-200/80 hover:text-gold transition-colors flex items-center gap-1"
+              className="hover:text-gold transition-colors flex items-center gap-1.5"
             >
               <Phone className="w-3 h-3 text-gold" />
               <span>+91 8848242986</span>
             </a>
 
             <a
-              href={getWhatsAppUrl()}
+              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your Gujarat ornaments and statement necklaces.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
+              className="hover:text-gold transition-colors flex items-center gap-1.5 text-emerald-300"
             >
               <MessageCircle className="w-3 h-3" />
-              <span>WhatsApp Concierge</span>
+              <span>WhatsApp Direct</span>
             </a>
-
-            <div className="h-3 w-px bg-cream-100/20" />
 
             <Link
               to="/add-ornaments"
-              className="text-gold-light hover:text-white transition-colors flex items-center gap-1 font-medium"
+              className="hover:text-gold transition-colors flex items-center gap-1 text-gold-light/90 hover:text-gold font-medium"
               title="Add Ornaments Portal"
             >
               <Lock className="w-3 h-3 text-gold" />
@@ -70,7 +68,7 @@ export default function Navbar() {
               href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cream-300/60 hover:text-gold transition-colors flex items-center gap-1"
+              className="hover:text-gold transition-colors flex items-center gap-1 text-gold/80 hover:text-gold"
               title="Store Admin Portal"
             >
               <Lock className="w-3 h-3" />
@@ -83,80 +81,80 @@ export default function Navbar() {
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Brand Logo */}
+          {/* Brand Logo - Preserved Original Maroon & Gold Styling */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-full bg-[#181512] flex items-center justify-center border border-gold/40 shadow-sm group-hover:border-gold transition-all duration-300">
-              <Sparkles className="w-4 h-4 text-gold" />
+            <div className="w-11 h-11 rounded-full bg-maroon flex items-center justify-center border-2 border-gold shadow-md group-hover:scale-105 transition-transform duration-300">
+              <Sparkles className="w-5 h-5 text-gold" />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl font-normal tracking-[0.25em] text-[#181512] group-hover:text-gold-dark transition-colors">
-                Z I V A R A
+              <span className="font-royal text-2xl font-bold tracking-widest text-maroon group-hover:text-maroon-dark transition-colors">
+                ZIVARA
               </span>
-              <span className="text-[9px] tracking-[0.35em] uppercase text-gold font-medium -mt-1">
-                HAUTE JOAILLERIE
+              <span className="text-[9.5px] tracking-[0.25em] uppercase text-gold font-semibold -mt-1">
+                GUJARAT ORNAMENTS
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center space-x-10">
+          <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-xs uppercase tracking-[0.22em] font-medium transition-all relative py-1.5 ${
+                className={`text-sm tracking-wider uppercase font-medium transition-all relative py-1 ${
                   isActive(link.path)
-                    ? 'text-[#181512] font-semibold'
-                    : 'text-[#6E6760] hover:text-[#181512]'
+                    ? 'text-maroon font-semibold'
+                    : 'text-brown hover:text-gold'
                 }`}
               >
                 {link.name}
                 {isActive(link.path) && (
-                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-gold rounded-full" />
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gold rounded-full" />
                 )}
               </Link>
             ))}
           </nav>
 
           {/* Right CTAs */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-3">
             <a
               href={getCallUrl()}
-              className="px-4 py-2 border border-[#181512]/20 text-[#181512] hover:border-gold hover:text-gold-dark rounded-full text-xs font-medium tracking-[0.18em] uppercase transition-all flex items-center gap-2"
+              className="px-4 py-2 border border-gold/40 text-brown hover:border-gold hover:text-maroon rounded-full text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-2"
             >
               <Phone className="w-3.5 h-3.5 text-gold" />
-              <span>Concierge</span>
+              <span>Call Now</span>
             </a>
 
             <a
-              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your modern luxury statement necklaces and jewellery collection.")}
+              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your Gujarat ornaments and statement necklaces.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 bg-[#181512] hover:bg-black text-cream-50 rounded-full text-xs font-semibold tracking-[0.18em] uppercase shadow-sm hover:shadow-md transition-all flex items-center gap-2 border border-gold/40"
+              className="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full text-xs font-semibold tracking-wider uppercase shadow-md hover:shadow-lg transition-all flex items-center gap-2"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Enquire</span>
+              <MessageCircle className="w-4 h-4 text-emerald-200" />
+              <span>Enquire / Purchase</span>
             </a>
           </div>
 
           {/* Mobile Menu & WhatsApp Icons */}
           <div className="md:hidden flex items-center space-x-2">
             <a
-              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your modern statement necklaces.")}
+              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your Gujarat ornaments.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#181512] text-emerald-400 border border-gold/30 hover:bg-black transition-colors"
+              className="p-2 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 transition-colors"
               aria-label="WhatsApp Contact"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-5 h-5" />
             </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-10 h-10 flex items-center justify-center rounded-full text-[#181512] hover:bg-cream-100 transition-colors"
+              className="p-2 rounded-md text-brown hover:text-maroon hover:bg-cream-100 transition-colors"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -164,17 +162,17 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gold/20 px-6 pt-4 pb-6 space-y-4 shadow-xl animate-fadeIn">
-          <div className="flex flex-col space-y-1">
+        <div className="md:hidden bg-cream-50 border-b border-gold/30 px-4 pt-3 pb-6 space-y-4 shadow-lg animate-fadeIn">
+          <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`px-4 py-3 rounded-xl text-xs uppercase tracking-[0.22em] font-medium transition-colors ${
+                className={`px-3 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-colors ${
                   isActive(link.path)
-                    ? 'bg-[#181512] text-cream-50 font-semibold'
-                    : 'text-[#2C1810] hover:bg-cream-100'
+                    ? 'bg-maroon text-white font-semibold'
+                    : 'text-brown hover:bg-cream-200/50 hover:text-maroon'
                 }`}
               >
                 {link.name}
@@ -184,9 +182,9 @@ export default function Navbar() {
             <Link
               to="/add-ornaments"
               onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-3 rounded-xl text-xs uppercase tracking-[0.22em] font-semibold text-[#181512] hover:bg-cream-100 flex items-center gap-2 border border-gold/30 bg-gold/5 mt-2"
+              className="px-3 py-2.5 rounded-lg text-sm font-semibold text-maroon hover:bg-cream-200/50 flex items-center gap-2 border border-gold/30 bg-gold/5"
             >
-              <Lock className="w-3.5 h-3.5 text-gold" />
+              <Lock className="w-4 h-4 text-gold-dark" />
               <span>🔒 Add Ornaments</span>
             </Link>
 
@@ -194,30 +192,30 @@ export default function Navbar() {
               href="https://zivara-backend-4cl3.onrender.com/admin/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-3 rounded-xl text-xs uppercase tracking-[0.22em] font-medium text-[#6E6760] hover:bg-cream-100 flex items-center gap-2"
+              className="px-3 py-2.5 rounded-lg text-sm font-medium text-gold-dark hover:bg-cream-200/50 flex items-center gap-2"
             >
-              <Lock className="w-3.5 h-3.5" />
+              <Lock className="w-4 h-4" />
               <span>Admin Portal Login</span>
             </a>
           </div>
 
           <div className="pt-3 border-t border-gold/20 flex flex-col gap-2.5">
             <a
-              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your modern luxury statement necklaces.")}
+              href={getWhatsAppUrl("Hello Zivara! I would like to enquire about your ornaments.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full min-h-[44px] py-3 bg-[#181512] text-cream-50 rounded-full text-center text-xs font-semibold tracking-[0.18em] uppercase flex items-center justify-center gap-2 shadow-sm border border-gold/30"
+              className="w-full py-3 bg-emerald-700 text-white rounded-lg text-center text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 shadow-sm"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              <span>WhatsApp Enquire</span>
+              <MessageCircle className="w-4 h-4" />
+              <span>Enquire / Purchase on WhatsApp</span>
             </a>
 
             <a
               href={getCallUrl()}
-              className="w-full min-h-[44px] py-3 border border-[#181512]/20 text-[#181512] rounded-full text-center text-xs font-semibold tracking-[0.18em] uppercase flex items-center justify-center gap-2 bg-cream-50"
+              className="w-full py-3 border border-gold text-maroon rounded-lg text-center text-xs font-semibold tracking-wider uppercase flex items-center justify-center gap-2 bg-cream-100/50"
             >
-              <Phone className="w-3.5 h-3.5 text-gold" />
-              <span>Call Concierge: +91 8848242986</span>
+              <Phone className="w-4 h-4 text-gold" />
+              <span>Call +91 8848242986</span>
             </a>
           </div>
         </div>

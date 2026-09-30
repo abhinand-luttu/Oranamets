@@ -20,12 +20,25 @@ function ScrollToTop() {
 
 export default function App() {
   const [hasEntered, setHasEntered] = useState(false);
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(() => {
+    try {
+      return !sessionStorage.getItem('zivara_intro_dismissed');
+    } catch (e) {
+      return true;
+    }
+  });
+
+  const handleDismissIntro = () => {
+    try {
+      sessionStorage.setItem('zivara_intro_dismissed', 'true');
+    } catch (e) {}
+    setShowIntro(false);
+  };
 
   return (
     <SettingsProvider>
       {showIntro && (
-        <BrandIntroOverlay onComplete={() => setShowIntro(false)} />
+        <BrandIntroOverlay onComplete={handleDismissIntro} />
       )}
       <BrowserRouter>
         <ScrollToTop />
