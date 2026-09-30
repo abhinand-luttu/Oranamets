@@ -4,13 +4,9 @@ import brideImg from '../assets/bride-intro.jpg';
 
 /**
  * BrandIntroOverlay
- * Cinematic promotional page-load intro featuring an Indian bride wearing traditional gold ornaments.
- * Features subtle camera zoom, micro-sway, sparkling jewel highlights, gold light sweep,
+ * Modern High Jewellery Campaign Intro featuring an editorial model wearing an exquisite statement necklace.
+ * Features subtle camera zoom, sparkling jewel highlights, gold light sweep,
  * and a smooth fade-out reveal to the homepage.
- *
- * @param {Object} props
- * @param {Function} props.onComplete - callback executed when intro finishes and should unmount
- * @param {string} [props.mediaSource] - optional image or video URL to replace bride media easily
  */
 export default function BrandIntroOverlay({ onComplete, mediaSource }) {
   const [isExiting, setIsExiting] = useState(false);
@@ -61,9 +57,9 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
   return (
     <div
       role="dialog"
-      aria-label="Welcome to Zivara Ornaments"
+      aria-label="Welcome to Zivara High Jewellery"
       aria-modal="true"
-      className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#150a06] overflow-hidden select-none transition-all duration-700 ${
+      className={`fixed inset-0 z-[99999] flex items-center justify-center bg-[#100D0B] overflow-hidden select-none transition-all duration-700 ${
         isExiting ? 'intro-overlay-exit' : 'intro-overlay-active'
       }`}
     >
@@ -71,103 +67,84 @@ export default function BrandIntroOverlay({ onComplete, mediaSource }) {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <img
           src={imageSrc}
-          alt="Modern Luxury Jewellery Campaign - Statement Gold Necklace"
+          alt="Modern Luxury Jewellery Campaign - Statement Emerald & Gold Necklace"
           onLoad={() => setImageLoaded(true)}
           className={`w-full h-full object-cover object-[50%_35%] animate-intro-zoom ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-700`}
         />
 
-        {/* 2. Micro-motion Model Animation Container (Subtle sway & natural gaze breath) */}
+        {/* 2. Micro-motion Model Animation Container */}
         <div className="absolute inset-0 w-full h-full pointer-events-none animate-bride-sway">
           {/* Subtle Golden Sheen Light Sweep across the statement necklace */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-light/20 to-transparent w-[200%] h-full animate-gold-sweep" />
 
-          {/* Jewellery Sparkle Highlights (positioned over the statement necklace) */}
-          {/* Statement Necklace Centerpoint Sparkle 1 */}
+          {/* Jewellery Sparkle Highlights over the necklace */}
           <div className="absolute top-[63%] left-[50%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
             <svg className="w-6 h-6 text-emerald-300" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
-          {/* Statement Necklace Left Drop Sparkle 2 */}
           <div className="absolute top-[59%] left-[45%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-2">
             <svg className="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
 
-          {/* Statement Necklace Right Drop Sparkle 3 */}
           <div className="absolute top-[59%] left-[55%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-3">
             <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
             </svg>
           </div>
-
-          {/* Statement Necklace Bottom Emerald Bead Sparkle 4 */}
-          <div className="absolute top-[69%] left-[50%] -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-sparkle-1">
-            <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
-            </svg>
-          </div>
         </div>
 
-        {/* 3. Luxury Cinematic Vignette & Lighting Atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/95 via-transparent to-brown-dark/70 pointer-events-none" />
-        <div className="absolute inset-0 bg-radial-vignette opacity-70 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(26,13,8,0.75)_100%)] pointer-events-none" />
+        {/* 3. Luxury Cinematic Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#100D0B] via-black/25 to-[#100D0B]/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(16,13,11,0.8)_100%)] pointer-events-none" />
       </div>
 
-      {/* 4. Elegant Top Brand Bar & Skip Button */}
-      <div className="absolute top-6 inset-x-0 px-6 sm:px-10 flex items-center justify-between z-20">
-        <div className="flex items-center gap-2 text-gold-light/90">
-          <div className="w-7 h-7 rounded-full bg-maroon/60 border border-gold/50 flex items-center justify-center">
+      {/* 4. Top Brand Bar & Skip Button */}
+      <div className="absolute top-6 inset-x-0 px-6 sm:px-12 flex items-center justify-between z-20">
+        <div className="flex items-center gap-2.5 text-cream-100">
+          <div className="w-8 h-8 rounded-full bg-[#181512]/80 border border-gold/40 flex items-center justify-center">
             <Sparkles className="w-3.5 h-3.5 text-gold" />
           </div>
-          <span className="font-royal text-xs font-semibold tracking-[0.25em] uppercase text-gold-light">
-            ZIVARA HERITAGE
+          <span className="font-serif text-xs tracking-[0.3em] uppercase text-cream-100 font-medium">
+            Z I V A R A
           </span>
         </div>
 
         <button
           onClick={triggerExit}
           type="button"
-          className="group px-4 py-2 rounded-full bg-cream-50/10 hover:bg-cream-50/20 backdrop-blur-md border border-gold/40 hover:border-gold text-cream-100 text-xs font-medium tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-lg active:scale-95"
+          className="group px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-gold/40 hover:border-gold text-cream-100 text-xs font-medium tracking-[0.2em] uppercase flex items-center gap-2 transition-all shadow-lg active:scale-95"
           aria-label="Skip intro animation"
         >
-          <span>Skip Intro</span>
+          <span>Skip</span>
           <X className="w-3.5 h-3.5 text-gold group-hover:rotate-90 transition-transform" />
         </button>
       </div>
 
-      {/* 5. Bottom Brand & Ornaments Focus Title Overlay */}
-      <div className="absolute bottom-8 sm:bottom-12 inset-x-0 px-4 text-center z-20 pointer-events-none">
+      {/* 5. Bottom Brand Overlay */}
+      <div className="absolute bottom-8 sm:bottom-14 inset-x-0 px-4 text-center z-20 pointer-events-none">
         <div className="inline-flex flex-col items-center max-w-lg mx-auto space-y-3">
-          {/* Subtle Golden Emblem */}
-          <div className="w-12 h-12 rounded-full bg-maroon/80 border-2 border-gold flex items-center justify-center shadow-royal-gold animate-gem-aura">
-            <Sparkles className="w-6 h-6 text-gold" />
-          </div>
-
-          {/* Royal Brand Name */}
-          <h1 className="font-royal text-3xl sm:text-5xl font-bold tracking-[0.2em] text-cream-50 drop-shadow-md">
+          <h1 className="font-serif text-3xl sm:text-5xl font-light tracking-[0.3em] text-cream-50 drop-shadow-lg">
             Z I V A R A
           </h1>
 
-          {/* Golden Divider */}
-          <div className="flex items-center gap-3 w-48 justify-center">
+          <div className="flex items-center gap-3 w-40 justify-center">
             <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-gold" />
             <span className="w-1.5 h-1.5 rounded-full bg-gold" />
             <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-gold" />
           </div>
 
-          {/* Subtitle */}
-          <p className="font-royal text-xs sm:text-sm tracking-[0.3em] uppercase text-gold-light font-medium drop-shadow">
-            Exquisite Jewellery Collection • Statement Necklaces
+          <p className="font-serif text-xs sm:text-sm tracking-[0.3em] uppercase text-gold-light font-light drop-shadow">
+            Haute Joaillerie • Statement Necklaces
           </p>
 
-          <p className="text-[11px] text-cream-200/80 tracking-widest uppercase">
-            Shipped Directly from Gujarat to Your Doorstep
+          <p className="text-[10px] text-cream-200/80 tracking-[0.2em] uppercase">
+            Mastercrafted Jewellery Delivered Directly to Your Doorstep
           </p>
         </div>
       </div>

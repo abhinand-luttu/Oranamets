@@ -1,38 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2D0A14" />
-      <stop offset="50%" stop-color="#1A050B" />
-      <stop offset="100%" stop-color="#0F0307" />
+    <linearGradient id="luxury-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5" />
+      <stop offset="50%" stop-color="#F5F0E6" />
+      <stop offset="100%" stop-color="#EFE8D8" />
     </linearGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F3E5AB" />
+    <linearGradient id="gold-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6C987" />
       <stop offset="50%" stop-color="#C5A059" />
-      <stop offset="100%" stop-color="#8C6D23" />
+      <stop offset="100%" stop-color="#9E7D3B" />
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#C5A059" stop-opacity="0.3" />
-      <stop offset="100%" stop-color="#C5A059" stop-opacity="0" />
-    </radialGradient>
   </defs>
-  <rect width="400" height="400" fill="url(#bg)" />
-  <circle cx="200" cy="200" r="160" fill="url(#glow)" />
-  <circle cx="200" cy="200" r="140" fill="none" stroke="url(#gold)" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6" />
-  <circle cx="200" cy="200" r="110" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.4" />
   
-  <!-- Stylized Royal Jewelry Icon -->
-  <g transform="translate(200, 190) scale(1.6)">
-    <path d="M 0 -45 L 35 -15 L 22 35 L -22 35 L -35 -15 Z" fill="none" stroke="url(#gold)" stroke-width="2" />
-    <path d="M 0 -45 L 12 -15 L 0 35 L -12 -15 Z" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.7" />
-    <line x1="-35" y1="-15" x2="35" y2="-15" stroke="url(#gold)" stroke-width="1.5" />
-    <circle cx="0" cy="-45" r="4" fill="url(#gold)" />
-    <circle cx="35" cy="-15" r="3.5" fill="url(#gold)" />
-    <circle cx="-35" cy="-15" r="3.5" fill="url(#gold)" />
-    <circle cx="22" cy="35" r="3.5" fill="url(#gold)" />
-    <circle cx="-22" cy="35" r="3.5" fill="url(#gold)" />
-    <circle cx="0" cy="0" r="6" fill="url(#gold)" opacity="0.9" />
+  <rect width="400" height="400" fill="url(#luxury-bg)" />
+  <circle cx="200" cy="180" r="110" fill="none" stroke="url(#gold-stroke)" stroke-width="1" stroke-dasharray="3 3" opacity="0.4" />
+  <circle cx="200" cy="180" r="85" fill="#FFFFFF" fill-opacity="0.6" stroke="url(#gold-stroke)" stroke-width="1.2" opacity="0.7" />
+
+  <!-- Modern Faceted Gem / Statement Necklace Center Silhouette -->
+  <g transform="translate(200, 180) scale(1.3)">
+    <!-- Gem Top Crown -->
+    <polygon points="-30,-18 30,-18 20,-32 -20,-32" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" />
+    <!-- Gem Pavilion -->
+    <polygon points="-30,-18 30,-18 0,32" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" />
+    <!-- Internal Facets -->
+    <line x1="-12" y1="-18" x2="0" y2="32" stroke="url(#gold-stroke)" stroke-width="1" opacity="0.6" />
+    <line x1="12" y1="-18" x2="0" y2="32" stroke="url(#gold-stroke)" stroke-width="1" opacity="0.6" />
+    <line x1="-20" y1="-32" x2="-12" y2="-18" stroke="url(#gold-stroke)" stroke-width="1" opacity="0.6" />
+    <line x1="20" y1="-32" x2="12" y2="-18" stroke="url(#gold-stroke)" stroke-width="1" opacity="0.6" />
   </g>
-  
-  <text x="200" y="295" font-family="'Cinzel', serif, Georgia" font-size="14" font-weight="700" fill="url(#gold)" text-anchor="middle" letter-spacing="4">ZIVARA</text>
-  <text x="200" y="318" font-family="'Montserrat', sans-serif" font-size="9" font-weight="500" fill="#D4AF37" text-anchor="middle" letter-spacing="2" opacity="0.8">HERITAGE ORNAMENTS</text>
+
+  <text x="200" y="295" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="600" fill="#181512" text-anchor="middle" letter-spacing="4">Z I V A R A</text>
+  <text x="200" y="316" font-family="'Montserrat', sans-serif" font-size="8.5" font-weight="500" fill="#9E7D3B" text-anchor="middle" letter-spacing="3" opacity="0.9">HAUTE JOAILLERIE</text>
 </svg>
